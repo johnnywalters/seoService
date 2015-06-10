@@ -1,0 +1,35 @@
+{
+	"name": "seoService",
+	"description": "node js seo service",
+	"homepage": "http://www.localhost.com",
+	"version": "0.1.0",
+	"dependencies": {
+		"express": "4.12.3",
+		"body-parser": "1.12.2",
+		"method-override": "2.3.2",
+		"request": "2.55.0",
+		"lodash": "3.6.0",
+		"cheerio": "0.19.0"
+	},
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/jshemas/seoService"
+	},
+	"author": {
+		"name": "jshemas"
+	},
+	"scripts": {
+		"start": "node app",
+		"test": "mocha spec/"
+	},
+	"engines": {
+		"node": "0.10.24",
+		"npm": "1.3.21"
+	},
+	"private": false,
+	"devDependencies": {
+		"supertest": "0.15.0",
+		"expect.js": "0.3.1",
+		"mocha": "2.2.4"
+	}
+}
