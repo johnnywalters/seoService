@@ -1,5 +1,7 @@
 var request = require('request'),
 	cheerio = require('cheerio'),
+	async = require('async'),
+	Seo = require('./seo.js'),
 	_ = require('lodash'),
 	validateVars = require('./utils.js').validateVars;
 
@@ -48,18 +50,19 @@ module.exports = function(app) {
 				var $ = cheerio.load(body),
 					meta = $('meta'),
 					keys = Object.keys(meta),
-					ogObject = {},
-					description;
+					ogObject = {};
 
-				keys.forEach(function(key) {
-					if (meta[key].attribs && meta[key].attribs.name && meta[key].attribs.name === 'description') {
-						description = meta[key].attribs.content;
+				async.series({
+					checkDescription: function (callback) {
+						Seo.checkDescription(meta, keys, function (checkDescriptionRes) {
+							ogObject.description = checkDescriptionRes;
+							callback();
+						});
 					}
+				},
+				function () {
+					callback(null, ogObject);
 				});
-
-				ogObject.description = description;
-
-				callback(null, ogObject);
 			};
 		});
 	};
@@ -68,9 +71,9 @@ module.exports = function(app) {
 		var options = req.body.options;
 		checkURL(options, function(getInfoErr, getInfoRes) {
 			if (getInfoErr) {
-				return res.status(200).json({'success': false, 'res': getInfoRes});
+				return res.status(200).json({'success': false, 'result': getInfoRes});
 			} else if (getInfoRes) {
-				return res.status(200).json({'success': true, 'res': getInfoRes});
+				return res.status(200).json({'success': true, 'result': getInfoRes});
 			} else {
 				return res.status(200).json({'success': false});
 			}
