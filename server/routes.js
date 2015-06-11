@@ -1,56 +1,36 @@
 var request = require('request'),
 	cheerio = require('cheerio'),
-	_ = require('lodash');
+	_ = require('lodash'),
+	validateVars = require('./utils.js').validateVars;
 
 module.exports = function(app) {
-	var validateVars = require('./utils.js').validateVars;
-
 	/*
-	 * get info
+	 * check URL
 	 * @param string url - user input of url
 	 * @param function callback
 	 */
-	var getInfo = function(options, callback) {
+	var checkURL = function(options, callback) {
 		var error = null, returnResule = {};
 		that = this;
 		validateVars(options.url, options.timeout, function(inputUrlFlag, inputUrl, inputTimeoutFlag, inputTimeout) {
-			if(inputUrlFlag && inputUrlFlag == true && inputTimeoutFlag && inputTimeoutFlag == true){
+			if (inputUrlFlag && inputUrlFlag == true && inputTimeoutFlag && inputTimeoutFlag == true) {
 				options.url = inputUrl;
 				options.timeout = inputTimeout;
-				getSEO(options, function(err, results) {
-					if(results && results.success){
-						returnResule = {
-							data: results,
-							success: true
-						};
-					}else{
-						if(err && (err.code == 'ENOTFOUND' || err.code == 'EHOSTUNREACH')){
-							error = 'err';
-							returnResule = {
-								err: 'Page Not Found',
-								success: false
-							};
-						} else if(err && err.code == 'ETIMEDOUT'){
-							error = 'err';
-							returnResule = {
-								err: 'Time Out',
-								success: false
-							};
-						}else{
-							error = 'err';
-							returnResule = {
-								err: 'Page Not Found',
-								success: false
-							};
+				getSEO(options, function(getSEOError, getSEOResults) {
+					if (!getSEOError && getSEOResults) {
+						callback(null, getSEOResults);
+					} else {
+						if (getSEOError && (getSEOError.code == 'ENOTFOUND' || getSEOError.code == 'EHOSTUNREACH')) {
+							callback(true, 'Page Not Found');
+						} else if (getSEOError && getSEOError.code == 'ETIMEDOUT') {
+							callback(true, 'Time Out');
+						} else {
+							callback(true, 'Page Not Found');
 						}
 					};
-					callback(error,returnResule);
 				});
-			}else{
-				callback('err',{
-					success: false,
-					err: 'Invalid URL'
-				});
+			} else {
+				callback(true, 'Invalid URL');
 			};
 		});
 	};
@@ -70,9 +50,6 @@ module.exports = function(app) {
 					keys = Object.keys(meta),
 					ogObject = {};
 
-				//able to get og info
-				ogObject.success = 'true';
-
 				var meta = $('meta'),
 					keys = Object.keys(meta),
 					description;
@@ -83,22 +60,23 @@ module.exports = function(app) {
 					}
 				});
 
-				console.log('description:', description);
+				ogObject.description = description;
 
-				console.log('ogObject',ogObject);
-				callback(null,ogObject);
+				callback(null, ogObject);
 			};
 		});
 	};
 
 	app.post('/getInfo', function(req, res) {
 		var options = req.body.options;
-		console.log('options: ', options);
-		getInfo(options, function(getInfoErr, getInfoRes) {
-			console.log('res:', getInfoRes);
-			return res.json({
-				success: true,
-			});
+		checkURL(options, function(getInfoErr, getInfoRes) {
+			if (getInfoErr) {
+				return res.status(200).json({'success': false, 'res': getInfoRes});
+			} else if (getInfoRes) {
+				return res.status(200).json({'success': true, 'res': getInfoRes});
+			} else {
+				return res.status(200).json({'success': false});
+			}
 		});
 	});
 }
