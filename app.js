@@ -1,11 +1,13 @@
 var express = require('express'),
 	http = require('http'),
+	cors = require('cors')
 	bodyParser = require('body-parser'),
 	methodOverride = require('method-override'),
 	app = module.exports = express();
 
 // configure Express
 app.set('port', process.env.PORT || 8080);
+app.use(cors());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(methodOverride());

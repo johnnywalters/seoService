@@ -48,10 +48,7 @@ module.exports = function(app) {
 				var $ = cheerio.load(body),
 					meta = $('meta'),
 					keys = Object.keys(meta),
-					ogObject = {};
-
-				var meta = $('meta'),
-					keys = Object.keys(meta),
+					ogObject = {},
 					description;
 
 				keys.forEach(function(key) {
