@@ -25,6 +25,9 @@ module.exports = {
 		if (descriptionObj.content === null) {
 			descriptionObj.status = 0;
 			descriptionObj.message = 'Your site needs a meta description.';
+		} else if (descriptionObj.content.length > 140 || descriptionObj.content.length < 170) {
+			descriptionObj.status = 1;
+			descriptionObj.message = 'It\'s good that you have a meta description, but it should be between 140 and 170 characters. Your\'s is at ' + descriptionObj.content.length + ' characters';
 		}
 		callback(descriptionObj);
 	}

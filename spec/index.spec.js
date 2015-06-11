@@ -11,6 +11,7 @@ describe('test getInfo:', function (done) {
 			Expect(result.body.success).to.be(true);
 			Expect(result.body.result.description.content).to.be('The official home of the Python Programming Language');
 			Expect(result.body.result.description.status).to.be(1);
+			Expect(result.body.result.description.message).to.be('It\'s good that you have a meta description, but it should be between 140 and 170 characters. Your\'s is at 52 characters');
 			done();
 		});
 	});
