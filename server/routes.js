@@ -58,6 +58,12 @@ module.exports = function(app) {
 							ogObject.description = checkDescriptionRes;
 							callback();
 						});
+					},
+					checkKeywords: function (callback) {
+						Seo.checkKeywords(meta, keys, function (checkKeywordsRes) {
+							ogObject.keywords = checkKeywordsRes;
+							callback();
+						});
 					}
 				},
 				function () {

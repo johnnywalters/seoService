@@ -30,5 +30,35 @@ module.exports = {
 			descriptionObj.message = 'It\'s good that you have a meta description, but it should be between 140 and 170 characters. Your\'s is at ' + descriptionObj.content.length + ' characters';
 		}
 		callback(descriptionObj);
-	}
+	},
+
+	/*---------------------------------------------------------------------
+	|	checkKeywords
+	|
+	|	Purpose: checking the keywords
+	|
+	|	Parameters: meta and keys
+	|
+	|	Returns: keywordsObj
+	|
+	|	TODO: Add more tests
+	|
+	|	Tests: Unknown
+	*---------------------------------------------------------------------*/
+	checkKeywords: function (meta, keys, callback) {
+		var keywordsObj = {};
+		keywordsObj.content = null;
+		keys.forEach(function(key) {
+			if (meta[key].attribs && meta[key].attribs.name && meta[key].attribs.name === 'keywords') {
+				keywordsObj.content = meta[key].attribs.content;
+				keywordsObj.status = 1;
+				keywordsObj.message = 'Keywords looks good!';
+			}
+		});
+		if (keywordsObj.content === null) {
+			keywordsObj.status = 0;
+			keywordsObj.message = 'Your site needs a meta keywords.';
+		}
+		callback(keywordsObj);
+	},
 };
