@@ -53,7 +53,7 @@ module.exports = function(app) {
 
 				async.series({
 					checkTitle: function (callback) {
-						Seo.checkTitle($('title'), function (checkTitleRes) {
+						Seo.checkTitle($('title'), options.keyword, function (checkTitleRes) {
 							ogObject.title = checkTitleRes;
 							callback();
 						});
