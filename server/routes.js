@@ -14,10 +14,11 @@ module.exports = function(app) {
 	var checkURL = function(options, callback) {
 		var error = null, returnResule = {};
 		that = this;
-		validateVars(options.url, options.timeout, function(inputUrlFlag, inputUrl, inputTimeoutFlag, inputTimeout) {
-			if (inputUrlFlag && inputUrlFlag == true && inputTimeoutFlag && inputTimeoutFlag == true) {
-				options.url = inputUrl;
-				options.timeout = inputTimeout;
+		validateVars(options.url, options.keyword, function(validURL, err) {
+			if (err) {
+				callback(true, err);
+			} else {
+				options.url = validURL;
 				getSEO(options, function(getSEOError, getSEOResults) {
 					if (!getSEOError && getSEOResults) {
 						callback(null, getSEOResults);
@@ -31,8 +32,6 @@ module.exports = function(app) {
 						}
 					};
 				});
-			} else {
-				callback(true, 'Invalid URL');
 			};
 		});
 	};

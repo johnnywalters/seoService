@@ -3,50 +3,64 @@
  * @param string var - user input
  * @param function callback
  */
-exports.validateVars = function(inputUrl, inputTimeout, callback) {
+exports.validateVars = function(inputUrl, inputKeyword, callback) {
 	/*
 	 * validate url - all urls must have http:// in front of them
 	 * @param string var - the url we want to scrape
 	 * @param function callback
 	 */
 	var validateUrl = function(inputUrl) {
-		if(!/^(f|ht)tps?:\/\//i.test(inputUrl)) {
-			inputUrl = "http://" + inputUrl;
-		};
-		return inputUrl;
+		if (validateVar(inputUrl)) {
+			if (!/^(f|ht)tps?:\/\//i.test(inputUrl)) {
+				inputUrl = "http://" + inputUrl;
+			};
+			return inputUrl;
+		} else {
+			return 'No URL';
+		}
 	};
 
 	/*
-	 * validate timeout - how long should we wait for a request
-	 * @param number var - the time we want to wait
+	 * validate keyword - this is the SEO keyword we are testing against
+	 * @param string var - the seo keyword
 	 * @param function callback
 	 */
-	var validateTimeout = function(inputTimeout) {
-		if(!/^\d{1,10}$/.test(inputTimeout)) {
-			return false;
-		};
-		return true;
-	};
-
-	var returnInputUrl,returnInputUrlFlag,returnInputTimeout,returnInputTimeoutFlag;
-	if ( inputUrl == null || inputUrl.length < 1 || typeof inputUrl === 'undefined' || !inputUrl) {
-		returnInputUrlFlag = false;
-		returnInputUrl = '';
-	} else {
-		returnInputUrlFlag = true;
-		returnInputUrl = validateUrl(inputUrl);
-	};
-	if ( inputTimeout == null || inputTimeout.length < 1 || typeof inputTimeout === 'undefined' || !inputTimeout) {
-		returnInputTimeoutFlag = true;
-		returnInputTimeout = 2000; //time default to 2000ms
-	} else {
-		if(validateTimeout(inputTimeout)) {
-			returnInputTimeoutFlag = true;
-			returnInputTimeout = inputTimeout;
+	var validateKeyword = function (inputKeyword) {
+		if (validateVar(inputKeyword)) {
+			var regex = /^(?=.*[a-zA-Z])([a-zA-Z0-9.@_]+){2,40}$/;
+			if (regex.test(inputKeyword)) {
+				return;
+			} else {
+				return 'Invalid Keyword';
+			}
 		} else {
-			returnInputTimeoutFlag = true;
-			returnInputTimeout = 2000; //time default to 2000ms
+			return 'No Keyword';
 		}
 	};
-	callback(returnInputUrlFlag, returnInputUrl, returnInputTimeoutFlag, returnInputTimeout)
+
+	/*
+	 * validate var
+	 * @param string var - user input
+	 */
+	var validateVar = function (inputVar) {
+		if (inputVar === null || (inputVar && inputVar.length < 1) || typeof inputVar === 'undefined' || !inputVar) {
+			return false;
+		} else {
+			return true;
+		}
+	};
+
+	var returnInputUrl,
+		returnError = null;
+
+	returnInputUrl = validateUrl(inputUrl);
+	if (returnInputUrl === 'No URL') {
+		returnError = 'No URL';
+	}
+
+	if (validateKeyword(inputKeyword) === 'Invalid Keyword' || validateKeyword(inputKeyword) === 'No Keyword') {
+		returnError = validateKeyword(inputKeyword);
+	}
+
+	callback(returnInputUrl, returnError);
 };
