@@ -4,7 +4,7 @@ var request = require('supertest'),
 	Expect = require('expect.js');
 
 describe('test getInfo:', function (done) {
-	it('valid', function (done) {
+	it('Valid URL', function (done) {
 		var data = {'options':{'url':'https://www.python.org/', 'keyword':'Python'}};
 		supertest.post('/getInfo').send(data).end(function (err, result) {
 			Expect(result.res.statusCode).to.be(200);
@@ -15,10 +15,13 @@ describe('test getInfo:', function (done) {
 			Expect(result.body.result.keywords.content).to.be('Python programming language object oriented web free open source software license documentation download community');
 			Expect(result.body.result.keywords.status).to.be(1);
 			Expect(result.body.result.keywords.message).to.be('Keywords looks good!');
+			Expect(result.body.result.title.content).to.be('Welcome to Python.org');
+			Expect(result.body.result.title.status).to.be(1);
+			Expect(result.body.result.title.message).to.be('Title tag looks good!');
 			done();
 		});
 	});
-	it('Invalid - no url', function (done) {
+	it('Invalid - No URL', function (done) {
 		var data = {'options':{'url':'', 'keyword':'Python'}};
 		supertest.post('/getInfo').send(data).end(function (err, result) {
 			Expect(result.res.statusCode).to.be(200);
@@ -27,7 +30,7 @@ describe('test getInfo:', function (done) {
 			done();
 		});
 	});
-	it('Invalid - no keyword', function (done) {
+	it('Invalid - No Keyword', function (done) {
 		var data = {'options':{'url':'https://www.python.org/', 'keyword':''}};
 		supertest.post('/getInfo').send(data).end(function (err, result) {
 			Expect(result.res.statusCode).to.be(200);

@@ -52,6 +52,12 @@ module.exports = function(app) {
 					ogObject = {};
 
 				async.series({
+					checkTitle: function (callback) {
+						Seo.checkTitle($('title'), function (checkTitleRes) {
+							ogObject.title = checkTitleRes;
+							callback();
+						});
+					},
 					checkDescription: function (callback) {
 						Seo.checkDescription(meta, keys, function (checkDescriptionRes) {
 							ogObject.description = checkDescriptionRes;

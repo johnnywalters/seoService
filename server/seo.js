@@ -1,5 +1,32 @@
 module.exports = {
 	/*---------------------------------------------------------------------
+	|	checkTitle
+	|
+	|	Purpose: checking the title
+	|
+	|	Parameters: title
+	|
+	|	Returns: titleObj
+	|
+	|	TODO: Add more tests
+	|
+	|	Tests: Unknown
+	*---------------------------------------------------------------------*/
+	checkTitle: function (title, callback) {
+		var titleObj = {};
+		console.log('title:', title.text());
+		if (title.text() === null) {
+			titleObj.status = 0;
+			titleObj.message = 'You need to add a title tag.';
+		} else {
+			titleObj.content = title.text();
+			titleObj.status = 1;
+			titleObj.message = 'Title tag looks good!';
+		}
+		callback(titleObj);
+	},
+
+	/*---------------------------------------------------------------------
 	|	checkDescription
 	|
 	|	Purpose: checking the description
