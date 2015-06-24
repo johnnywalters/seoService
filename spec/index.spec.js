@@ -18,6 +18,9 @@ describe('test getInfo:', function (done) {
 			Expect(result.body.result.title.content).to.be('Welcome to Python.org');
 			Expect(result.body.result.title.status).to.be(1);
 			Expect(result.body.result.title.message).to.be('Title tag looks good!');
+			Expect(result.body.result.title.info.stringLength).to.be(21);
+			Expect(result.body.result.title.info.keywordInTitle).to.be(true);
+			Expect(result.body.result.title.info.keywordStartsTitle).to.be(false);
 			done();
 		});
 	});

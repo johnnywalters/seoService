@@ -12,9 +12,8 @@ module.exports = {
 	|
 	|	Tests: Unknown
 	*---------------------------------------------------------------------*/
-	checkTitle: function (title, callback) {
+	checkTitle: function (title, keyword, callback) {
 		var titleObj = {};
-		console.log('title:', title.text());
 		if (title.text() === null) {
 			titleObj.status = 0;
 			titleObj.message = 'You need to add a title tag.';
@@ -22,6 +21,16 @@ module.exports = {
 			titleObj.content = title.text();
 			titleObj.status = 1;
 			titleObj.message = 'Title tag looks good!';
+			titleObj.info = {};
+			titleObj.info.stringLength = title.text().length;
+			titleObj.info.keywordInTitle = false;
+			titleObj.info.keywordStartsTitle = false;
+			if (titleObj.content.indexOf(keyword) > -1) {
+				titleObj.info.keywordInTitle = true;
+			}
+			if (titleObj.content.split(' ')[0] === keyword) {
+				titleObj.info.keywordStartsTitle = true;
+			}
 		}
 		callback(titleObj);
 	},
