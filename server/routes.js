@@ -59,7 +59,7 @@ module.exports = function(app) {
 						});
 					},
 					checkDescription: function (callback) {
-						Seo.checkDescription(meta, keys, function (checkDescriptionRes) {
+						Seo.checkDescription(meta, keys, options.keyword, function (checkDescriptionRes) {
 							ogObject.description = checkDescriptionRes;
 							callback();
 						});
