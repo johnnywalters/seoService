@@ -9,7 +9,7 @@ module.exports = function (grunt) {
 			appFiles: {
 				src: [
 					'server/*.js',
-					'spec/*.js',
+					'tests/*.js',
 					'Gruntfile.js',
 					'app.js',
 					'package.json'
@@ -24,7 +24,7 @@ module.exports = function (grunt) {
 			appFiles: {
 				src: [
 					'server/*.js',
-					'spec/*.js',
+					'tests/*.js',
 					'Gruntfile.js',
 					'app.js'
 				]
@@ -37,7 +37,7 @@ module.exports = function (grunt) {
 				bail: true
 			},
 			testApp: {
-				src: 'spec/index.spec.js'
+				src: 'tests/seo.spec.js'
 			}
 		},
 		// express deploy
