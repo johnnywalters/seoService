@@ -51,7 +51,7 @@ module.exports = {
 	checkDescription: function (meta, keys, keyword, callback) {
 		var descriptionObj = {};
 		descriptionObj.content = null;
-		keys.forEach(function(key) {
+		keys.forEach(function (key) {
 			if (meta[key].attribs && meta[key].attribs.name && meta[key].attribs.name === 'description') {
 				descriptionObj.content = meta[key].attribs.content;
 				descriptionObj.status = 1;
@@ -93,7 +93,7 @@ module.exports = {
 	checkKeywords: function (meta, keys, callback) {
 		var keywordsObj = {};
 		keywordsObj.content = null;
-		keys.forEach(function(key) {
+		keys.forEach(function (key) {
 			if (meta[key].attribs && meta[key].attribs.name && meta[key].attribs.name === 'keywords') {
 				keywordsObj.content = meta[key].attribs.content;
 				keywordsObj.status = 1;
@@ -105,5 +105,5 @@ module.exports = {
 			keywordsObj.message = 'Your site needs a meta keywords.';
 		}
 		callback(keywordsObj);
-	},
+	}
 };

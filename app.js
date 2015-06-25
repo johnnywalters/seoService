@@ -1,6 +1,5 @@
 var express = require('express'),
-	http = require('http'),
-	cors = require('cors')
+	cors = require('cors'),
 	bodyParser = require('body-parser'),
 	methodOverride = require('method-override'),
 	app = module.exports = express();
