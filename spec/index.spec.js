@@ -3,9 +3,9 @@ var request = require('supertest'),
 	supertest = request(app),
 	Expect = require('expect.js');
 
-describe('test getInfo:', function (done) {
+describe('test getInfo:', function () {
 	it('Valid URL', function (done) {
-		var data = {'options':{'url':'https://www.python.org/', 'keyword':'Python'}};
+		var data = {'options': {'url': 'https://www.python.org/', 'keyword': 'Python'}};
 		supertest.post('/getInfo').send(data).end(function (err, result) {
 			Expect(result.res.statusCode).to.be(200);
 			Expect(result.body.success).to.be(true);
@@ -28,7 +28,7 @@ describe('test getInfo:', function (done) {
 		});
 	});
 	it('Invalid - No URL', function (done) {
-		var data = {'options':{'url':'', 'keyword':'Python'}};
+		var data = {'options': {'url': '', 'keyword': 'Python'}};
 		supertest.post('/getInfo').send(data).end(function (err, result) {
 			Expect(result.res.statusCode).to.be(200);
 			Expect(result.body.success).to.be(false);
@@ -37,7 +37,7 @@ describe('test getInfo:', function (done) {
 		});
 	});
 	it('Invalid - No Keyword', function (done) {
-		var data = {'options':{'url':'https://www.python.org/', 'keyword':''}};
+		var data = {'options': {'url': 'https://www.python.org/', 'keyword': ''}};
 		supertest.post('/getInfo').send(data).end(function (err, result) {
 			Expect(result.res.statusCode).to.be(200);
 			Expect(result.body.success).to.be(false);

@@ -26,8 +26,7 @@ module.exports = function (grunt) {
 					'server/*.js',
 					'spec/*.js',
 					'Gruntfile.js',
-					'app.js',
-					'package.json'
+					'app.js'
 				]
 			}
 		},

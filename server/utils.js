@@ -3,17 +3,17 @@
  * @param string var - user input
  * @param function callback
  */
-exports.validateVars = function(inputUrl, inputKeyword, callback) {
+exports.validateVars = function (inputUrl, inputKeyword, callback) {
 	/*
 	 * validate url - all urls must have http:// in front of them
 	 * @param string var - the url we want to scrape
 	 * @param function callback
 	 */
-	var validateUrl = function(inputUrl) {
+	var validateUrl = function (inputUrl) {
 		if (validateVar(inputUrl)) {
 			if (!/^(f|ht)tps?:\/\//i.test(inputUrl)) {
-				inputUrl = "http://" + inputUrl;
-			};
+				inputUrl = 'http://' + inputUrl;
+			}
 			return inputUrl;
 		} else {
 			return 'No URL';
