@@ -48,7 +48,7 @@ module.exports = {
 	|
 	|	Tests: Unknown
 	*---------------------------------------------------------------------*/
-	checkDescription: function (meta, keys, callback) {
+	checkDescription: function (meta, keys, keyword, callback) {
 		var descriptionObj = {};
 		descriptionObj.content = null;
 		keys.forEach(function(key) {
@@ -56,13 +56,22 @@ module.exports = {
 				descriptionObj.content = meta[key].attribs.content;
 				descriptionObj.status = 1;
 				descriptionObj.message = 'Meta description looks good!';
+				descriptionObj.info = {};
+				descriptionObj.info.stringLength = meta[key].attribs.content.length;
+				descriptionObj.info.keywordInDescription = false;
+				descriptionObj.info.keywordStartsDescription = false;
+				if (descriptionObj.content.indexOf(keyword) > -1) {
+					descriptionObj.info.keywordInDescription = true;
+				}
+				if (descriptionObj.content.split(' ')[0] === keyword) {
+					descriptionObj.info.keywordStartsDescription = true;
+				}
 			}
 		});
 		if (descriptionObj.content === null) {
 			descriptionObj.status = 0;
 			descriptionObj.message = 'Your site needs a meta description.';
 		} else if (descriptionObj.content.length > 140 || descriptionObj.content.length < 170) {
-			descriptionObj.status = 1;
 			descriptionObj.message = 'It\'s good that you have a meta description, but it should be between 140 and 170 characters. Your\'s is at ' + descriptionObj.content.length + ' characters';
 		}
 		callback(descriptionObj);
