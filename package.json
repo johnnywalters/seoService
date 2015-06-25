@@ -28,7 +28,7 @@
 	},
 	"scripts": {
 		"start": "node app",
-		"test": "mocha spec/"
+		"test": "mocha tests/"
 	},
 	"engines": {
 		"node": "0.10.24",
