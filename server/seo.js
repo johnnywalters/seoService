@@ -130,13 +130,13 @@ module.exports = {
 			headerTagObj.h1.content = h1.text().trim();
 			headerTagObj.h1.status = 1;
 			headerTagObj.h1.info = {};
-			headerTagObj.h1.info.keywordInHeaderOne = false;
-			headerTagObj.h1.info.keywordStartsHeaderOne = false;
+			headerTagObj.h1.info.keywordInHeader = false;
+			headerTagObj.h1.info.keywordStartsHeader = false;
 			if (headerTagObj.h1.content.toLowerCase().indexOf(keyword) > -1) {
-				headerTagObj.h1.info.keywordInHeaderOne = true;
+				headerTagObj.h1.info.keywordInHeader = true;
 			}
 			if (headerTagObj.h1.content.toLowerCase().split(' ')[0] === keyword) {
-				headerTagObj.h1.info.keywordStartsHeaderOne = true;
+				headerTagObj.h1.info.keywordStartsHeader = true;
 			}
 		} else {
 			headerTagObj.h1.status = 0;
@@ -146,6 +146,15 @@ module.exports = {
 		if (h2 && h2.text() && (h2.text().trim().match(/[a-z]/i) !== -1 && h2.text().trim().match(/[a-z]/i) !== null)) {
 			headerTagObj.h2.content = h2.text().trim();
 			headerTagObj.h2.status = 1;
+			headerTagObj.h2.info = {};
+			headerTagObj.h2.info.keywordInHeader = false;
+			headerTagObj.h2.info.keywordStartsHeader = false;
+			if (headerTagObj.h2.content.toLowerCase().indexOf(keyword) > -1) {
+				headerTagObj.h2.info.keywordInHeader = true;
+			}
+			if (headerTagObj.h2.content.toLowerCase().split(' ')[0] === keyword) {
+				headerTagObj.h2.info.keywordStartsHeader = true;
+			}
 		} else {
 			headerTagObj.h2.status = 0;
 			headerTagObj.h2.message = 'There is no text in the first H2 on your page';
@@ -154,6 +163,15 @@ module.exports = {
 		if (h3 && h3.text() && (h3.text().trim().match(/[a-z]/i) !== -1 && h3.text().trim().match(/[a-z]/i) !== null)) {
 			headerTagObj.h3.content = h3.text().trim();
 			headerTagObj.h3.status = 1;
+			headerTagObj.h3.info = {};
+			headerTagObj.h3.info.keywordInHeader = false;
+			headerTagObj.h3.info.keywordStartsHeader = false;
+			if (headerTagObj.h3.content.toLowerCase().indexOf(keyword) > -1) {
+				headerTagObj.h3.info.keywordInHeader = true;
+			}
+			if (headerTagObj.h3.content.toLowerCase().split(' ')[0] === keyword) {
+				headerTagObj.h3.info.keywordStartsHeader = true;
+			}
 		} else {
 			headerTagObj.h3.status = 0;
 			headerTagObj.h3.message = 'There is no text in the first H3 on your page';
