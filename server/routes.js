@@ -70,6 +70,12 @@ module.exports = function (app) {
 							ogObject.headerTags = checkHeaderTagsRes;
 							callback();
 						});
+					},
+					checkImage: function (callback) {
+						Seo.checkImages($('img'), function (checkImagesRes) {
+							ogObject.images = checkImagesRes;
+							callback();
+						});
 					}
 				},
 				function () {

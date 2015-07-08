@@ -32,6 +32,11 @@ describe('test getInfo:', function () {
 			Expect(result.body.result.headerTags.h3.message).to.be('There is no text in the first H3 on your page');
 			Expect(result.body.result.headerTags.info.doHeaderingsExist).to.be(true);
 			Expect(result.body.result.headerTags.info.headerDuplicate).to.be(false);
+			Expect(result.body.result.images.message).to.be(undefined);
+			Expect(result.body.result.images.status).to.be(1);
+			Expect(result.body.result.images.info.imageCount).to.be(1);
+			Expect(result.body.result.images.info.URLArray[0]).to.be('/static/img/python-logo.png');
+			Expect(result.body.result.images.info.missingAlt).to.be.empty();
 			done();
 		});
 	});
@@ -62,6 +67,13 @@ describe('test getInfo:', function () {
 			Expect(result.body.result.headerTags.h3.content).to.be('Get Firefox news');
 			Expect(result.body.result.headerTags.info.doHeaderingsExist).to.be(true);
 			Expect(result.body.result.headerTags.info.headerDuplicate).to.be(false);
+			Expect(result.body.result.images.message).to.be(undefined);
+			Expect(result.body.result.images.status).to.be(1);
+			Expect(result.body.result.images.info.imageCount).to.be(3);
+			Expect(result.body.result.images.info.URLArray[0]).to.be('//mozorg.cdn.mozilla.net/media/img/firefox/new/header-firefox.98d0a02c957f.png');
+			Expect(result.body.result.images.info.URLArray[1]).to.be('//mozorg.cdn.mozilla.net/media/img/firefox/new/firefox-logo.d3cb43a0a16f.png');
+			Expect(result.body.result.images.info.URLArray[2]).to.be('//mozorg.cdn.mozilla.net/media/img/firefox/new/browser-windows.b9cf0baa80e1.png');
+			Expect(result.body.result.images.info.missingAlt).to.be.empty();
 			done();
 		});
 	});
