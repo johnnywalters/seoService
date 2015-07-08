@@ -37,6 +37,12 @@ describe('test getInfo:', function () {
 			Expect(result.body.result.images.info.imageCount).to.be(1);
 			Expect(result.body.result.images.info.URLArray[0]).to.be('/static/img/python-logo.png');
 			Expect(result.body.result.images.info.missingAlt).to.be.empty();
+			Expect(result.body.result.url.content).to.be('https://www.python.org/');
+			Expect(result.body.result.url.message).to.be(undefined);
+			Expect(result.body.result.url.status).to.be(1);
+			Expect(result.body.result.url.info.questionMarkOrEqualsInURL).to.be(false);
+			Expect(result.body.result.url.info.keywordInURL).to.be(false);
+			Expect(result.body.result.url.info.underscoreInURL).to.be(false);
 			done();
 		});
 	});
@@ -74,6 +80,12 @@ describe('test getInfo:', function () {
 			Expect(result.body.result.images.info.URLArray[1]).to.be('//mozorg.cdn.mozilla.net/media/img/firefox/new/firefox-logo.d3cb43a0a16f.png');
 			Expect(result.body.result.images.info.URLArray[2]).to.be('//mozorg.cdn.mozilla.net/media/img/firefox/new/browser-windows.b9cf0baa80e1.png');
 			Expect(result.body.result.images.info.missingAlt).to.be.empty();
+			Expect(result.body.result.url.content).to.be('https://www.mozilla.org/en-US/firefox/new/');
+			Expect(result.body.result.url.message).to.be(undefined);
+			Expect(result.body.result.url.status).to.be(1);
+			Expect(result.body.result.url.info.questionMarkOrEqualsInURL).to.be(false);
+			Expect(result.body.result.url.info.keywordInURL).to.be(false);
+			Expect(result.body.result.url.info.underscoreInURL).to.be(false);
 			done();
 		});
 	});

@@ -79,6 +79,26 @@ module.exports = function (app) {
 					}
 				},
 				function () {
+					var urlObj = {};
+					urlObj.info = {};
+					urlObj.status = 1;
+					urlObj.content = options.url;
+					if (urlObj.content.length > 90) {
+						urlObj.message = 'The URL you enter is over 90 characters';
+					}
+					urlObj.info.questionMarkOrEqualsInURL = true;
+					if (urlObj.content.indexOf('?') === -1 && urlObj.content.indexOf('=') === -1) {
+						urlObj.info.questionMarkOrEqualsInURL = false;
+					}
+					urlObj.info.keywordInURL = false;
+					if (urlObj.content.indexOf(options.keyword) > -1) {
+						urlObj.info.keywordInURL = true;
+					}
+					urlObj.info.underscoreInURL = false;
+					if (urlObj.content.indexOf('_') > -1) {
+						urlObj.info.underscoreInURL = true;
+					}
+					ogObject.url = urlObj;
 					callback(null, ogObject);
 				});
 			}
