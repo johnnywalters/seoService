@@ -24,6 +24,14 @@ describe('test getInfo:', function () {
 			Expect(result.body.result.title.info.stringLength).to.be(21);
 			Expect(result.body.result.title.info.keywordInTitle).to.be(true);
 			Expect(result.body.result.title.info.keywordStartsTitle).to.be(false);
+			Expect(result.body.result.headerTags.h1.status).to.be(0);
+			Expect(result.body.result.headerTags.h1.message).to.be('There is no text in the first H1 on your page');
+			Expect(result.body.result.headerTags.h2.status).to.be(1);
+			Expect(result.body.result.headerTags.h2.content).to.be('Get Started');
+			Expect(result.body.result.headerTags.h3.status).to.be(0);
+			Expect(result.body.result.headerTags.h3.message).to.be('There is no text in the first H3 on your page');
+			Expect(result.body.result.headerTags.info.doHeaderingsExist).to.be(true);
+			Expect(result.body.result.headerTags.info.headerDuplicate).to.be(false);
 			done();
 		});
 	});

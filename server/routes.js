@@ -66,6 +66,12 @@ module.exports = function (app) {
 							ogObject.keywords = checkKeywordsRes;
 							callback();
 						});
+					},
+					checkHeaderTags: function (callback) {
+						Seo.checkHeaderTags($('h1').first(), $('h2').first(), $('h3').first(), options.keyword, function (checkHeaderTagsRes) {
+							ogObject.headerTags = checkHeaderTagsRes;
+							callback();
+						});
 					}
 				},
 				function () {

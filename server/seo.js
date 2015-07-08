@@ -105,5 +105,65 @@ module.exports = {
 			keywordsObj.message = 'Your site needs a meta keywords.';
 		}
 		callback(keywordsObj);
+	},
+
+	/*---------------------------------------------------------------------
+	|	checkHeaderTags
+	|
+	|	Purpose: checking the header tags
+	|
+	|	Parameters: h1, h2, h3, and keyword
+	|
+	|	Returns: headerTagObj
+	|
+	|	TODO: Add more tests, DRY up code
+	|
+	|	Tests: Unknown
+	*---------------------------------------------------------------------*/
+	checkHeaderTags: function (h1, h2, h3, keyword, callback) {
+		var headerTagObj = {};
+		headerTagObj.info = {};
+		headerTagObj.h1 = {};
+		if (h1 && h1.text() && (h1.text().trim().match(/[a-z]/i) !== -1 && h1.text().trim().match(/[a-z]/i) !== null)) {
+			headerTagObj.h1.content = h1.text();
+			headerTagObj.h1.status = 1;
+			headerTagObj.h1.info = {};
+			headerTagObj.h1.info.keywordInHeaderOne = false;
+			headerTagObj.h1.info.keywordStartsHeaderOne = false;
+			if (headerTagObj.h1.content.indexOf(keyword) > -1) {
+				headerTagObj.h1.info.keywordInHeaderOne = true;
+			}
+			if (headerTagObj.h1.content.split(' ')[0] === keyword) {
+				headerTagObj.h1.info.keywordStartsHeaderOne = true;
+			}
+		} else {
+			headerTagObj.h1.status = 0;
+			headerTagObj.h1.message = 'There is no text in the first H1 on your page';
+		}
+		headerTagObj.h2 = {};
+		if (h2 && h2.text() && (h2.text().trim().match(/[a-z]/i) !== -1 && h2.text().trim().match(/[a-z]/i) !== null)) {
+			headerTagObj.h2.content = h2.text();
+			headerTagObj.h2.status = 1;
+		} else {
+			headerTagObj.h2.status = 0;
+			headerTagObj.h2.message = 'There is no text in the first H2 on your page';
+		}
+		headerTagObj.h3 = {};
+		if (h3 && h3.text() && (h3.text().trim().match(/[a-z]/i) !== -1 && h3.text().trim().match(/[a-z]/i) !== null)) {
+			headerTagObj.h3.content = h3.text();
+			headerTagObj.h3.status = 1;
+		} else {
+			headerTagObj.h3.status = 0;
+			headerTagObj.h3.message = 'There is no text in the first H3 on your page';
+		}
+		headerTagObj.info.doHeaderingsExist = false;
+		if (headerTagObj.h1.status === 1 || headerTagObj.h2.status === 1 || headerTagObj.h3.status === 1) {
+			headerTagObj.info.doHeaderingsExist = true;
+		}
+		headerTagObj.info.headerDuplicate = false;
+		if ((headerTagObj.h1.content && headerTagObj.h2.content && headerTagObj.h1.content === headerTagObj.h2.content) || (headerTagObj.h1.content && headerTagObj.h3.content && headerTagObj.h1.content === headerTagObj.h3.content) || (headerTagObj.h2.content && headerTagObj.h3.content && headerTagObj.h2.content === headerTagObj.h3.content)) {
+			headerTagObj.info.headerDuplicate = true;
+		}
+		callback(headerTagObj);
 	}
 };
