@@ -48,8 +48,9 @@ module.exports = {
 	|
 	|	Tests: Unknown
 	*---------------------------------------------------------------------*/
-	checkDescription: function (meta, keys, keyword, callback) {
-		var descriptionObj = {};
+	checkDescription: function (meta, keyword, callback) {
+		var descriptionObj = {},
+			keys = Object.keys(meta);
 		descriptionObj.content = null;
 		keys.forEach(function (key) {
 			if (meta[key].attribs && meta[key].attribs.name && meta[key].attribs.name === 'description') {
@@ -90,8 +91,9 @@ module.exports = {
 	|
 	|	Tests: Unknown
 	*---------------------------------------------------------------------*/
-	checkKeywords: function (meta, keys, callback) {
-		var keywordsObj = {};
+	checkKeywords: function (meta, callback) {
+		var keywordsObj = {},
+			keys = Object.keys(meta);
 		keywordsObj.content = null;
 		keys.forEach(function (key) {
 			if (meta[key].attribs && meta[key].attribs.name && meta[key].attribs.name === 'keywords') {

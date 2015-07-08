@@ -44,8 +44,6 @@ module.exports = function (app) {
 				callback(err, null);
 			} else {
 				var $ = cheerio.load(body),
-					meta = $('meta'),
-					keys = Object.keys(meta),
 					ogObject = {};
 
 				async.series({
@@ -56,13 +54,13 @@ module.exports = function (app) {
 						});
 					},
 					checkDescription: function (callback) {
-						Seo.checkDescription(meta, keys, options.keyword, function (checkDescriptionRes) {
+						Seo.checkDescription($('meta'), options.keyword, function (checkDescriptionRes) {
 							ogObject.description = checkDescriptionRes;
 							callback();
 						});
 					},
 					checkKeywords: function (callback) {
-						Seo.checkKeywords(meta, keys, function (checkKeywordsRes) {
+						Seo.checkKeywords($('meta'), function (checkKeywordsRes) {
 							ogObject.keywords = checkKeywordsRes;
 							callback();
 						});
