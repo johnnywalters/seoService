@@ -40,7 +40,7 @@ module.exports = {
 	|
 	|	Purpose: checking the description
 	|
-	|	Parameters: meta and keys
+	|	Parameters: meta and keyword
 	|
 	|	Returns: descriptionObj
 	|
@@ -83,7 +83,7 @@ module.exports = {
 	|
 	|	Purpose: checking the keywords
 	|
-	|	Parameters: meta and keys
+	|	Parameters: meta
 	|
 	|	Returns: keywordsObj
 	|
@@ -127,7 +127,7 @@ module.exports = {
 		headerTagObj.info = {};
 		headerTagObj.h1 = {};
 		if (h1 && h1.text() && (h1.text().trim().match(/[a-z]/i) !== -1 && h1.text().trim().match(/[a-z]/i) !== null)) {
-			headerTagObj.h1.content = h1.text();
+			headerTagObj.h1.content = h1.text().trim();
 			headerTagObj.h1.status = 1;
 			headerTagObj.h1.info = {};
 			headerTagObj.h1.info.keywordInHeaderOne = false;
@@ -144,7 +144,7 @@ module.exports = {
 		}
 		headerTagObj.h2 = {};
 		if (h2 && h2.text() && (h2.text().trim().match(/[a-z]/i) !== -1 && h2.text().trim().match(/[a-z]/i) !== null)) {
-			headerTagObj.h2.content = h2.text();
+			headerTagObj.h2.content = h2.text().trim();
 			headerTagObj.h2.status = 1;
 		} else {
 			headerTagObj.h2.status = 0;
@@ -152,7 +152,7 @@ module.exports = {
 		}
 		headerTagObj.h3 = {};
 		if (h3 && h3.text() && (h3.text().trim().match(/[a-z]/i) !== -1 && h3.text().trim().match(/[a-z]/i) !== null)) {
-			headerTagObj.h3.content = h3.text();
+			headerTagObj.h3.content = h3.text().trim();
 			headerTagObj.h3.status = 1;
 		} else {
 			headerTagObj.h3.status = 0;
@@ -167,5 +167,42 @@ module.exports = {
 			headerTagObj.info.headerDuplicate = true;
 		}
 		callback(headerTagObj);
+	},
+
+	/*---------------------------------------------------------------------
+	|	checkImages
+	|
+	|	Purpose: checking the images
+	|
+	|	Parameters: img
+	|
+	|	Returns: imagesObj
+	|
+	|	TODO: Add more tests
+	|
+	|	Tests: Unknown
+	*---------------------------------------------------------------------*/
+	checkImages: function (img, callback) {
+		var imagesObj = {},
+			keys = Object.keys(img);
+		imagesObj.info = {};
+		imagesObj.info.imageCount = 0;
+		imagesObj.info.URLArray = [];
+		imagesObj.info.missingAlt = [];
+		imagesObj.status = 0;
+		keys.forEach(function (key) {
+			if (img[key].attribs && img[key].attribs.src) {
+				imagesObj.info.imageCount = imagesObj.info.imageCount + 1;
+				imagesObj.info.URLArray.push(img[key].attribs.src);
+				imagesObj.status = 1;
+				if (!img[key].attribs.alt) {
+					imagesObj.info.missingAlt.push(img[key].attribs.src);
+				}
+			}
+		});
+		if (imagesObj.status === 0) {
+			imagesObj.message = 'You have no images';
+		}
+		callback(imagesObj);
 	}
 };
