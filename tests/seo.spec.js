@@ -28,6 +28,8 @@ describe('test getInfo:', function () {
 			Expect(result.body.result.headerTags.h1.message).to.be('There is no text in the first H1 on your page');
 			Expect(result.body.result.headerTags.h2.status).to.be(1);
 			Expect(result.body.result.headerTags.h2.content).to.be('Get Started');
+			Expect(result.body.result.headerTags.h2.info.keywordInHeader).to.be(false);
+			Expect(result.body.result.headerTags.h2.info.keywordStartsHeader).to.be(false);
 			Expect(result.body.result.headerTags.h3.status).to.be(0);
 			Expect(result.body.result.headerTags.h3.message).to.be('There is no text in the first H3 on your page');
 			Expect(result.body.result.headerTags.info.doHeaderingsExist).to.be(true);
@@ -67,10 +69,14 @@ describe('test getInfo:', function () {
 			Expect(result.body.result.title.info.keywordStartsTitle).to.be(false);
 			Expect(result.body.result.headerTags.h1.status).to.be(1);
 			Expect(result.body.result.headerTags.h1.content).to.be('When it’s personal,choose Firefox.');
+			Expect(result.body.result.headerTags.h1.info.keywordInHeader).to.be(false);
+			Expect(result.body.result.headerTags.h1.info.keywordStartsHeader).to.be(false);
 			Expect(result.body.result.headerTags.h2.status).to.be(0);
 			Expect(result.body.result.headerTags.h2.message).to.be('There is no text in the first H2 on your page');
 			Expect(result.body.result.headerTags.h3.status).to.be(1);
 			Expect(result.body.result.headerTags.h3.content).to.be('Get Firefox news');
+			Expect(result.body.result.headerTags.h3.info.keywordInHeader).to.be(false);
+			Expect(result.body.result.headerTags.h3.info.keywordStartsHeader).to.be(false);
 			Expect(result.body.result.headerTags.info.doHeaderingsExist).to.be(true);
 			Expect(result.body.result.headerTags.info.headerDuplicate).to.be(false);
 			Expect(result.body.result.images.message).to.be(undefined);
