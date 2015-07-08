@@ -25,10 +25,10 @@ module.exports = {
 			titleObj.info.stringLength = title.text().length;
 			titleObj.info.keywordInTitle = false;
 			titleObj.info.keywordStartsTitle = false;
-			if (titleObj.content.indexOf(keyword) > -1) {
+			if (titleObj.content.toLowerCase().indexOf(keyword) > -1) {
 				titleObj.info.keywordInTitle = true;
 			}
-			if (titleObj.content.split(' ')[0] === keyword) {
+			if (titleObj.content.toLowerCase().split(' ')[0] === keyword) {
 				titleObj.info.keywordStartsTitle = true;
 			}
 		}
@@ -61,10 +61,10 @@ module.exports = {
 				descriptionObj.info.stringLength = meta[key].attribs.content.length;
 				descriptionObj.info.keywordInDescription = false;
 				descriptionObj.info.keywordStartsDescription = false;
-				if (descriptionObj.content.indexOf(keyword) > -1) {
+				if (descriptionObj.content.toLowerCase().indexOf(keyword) > -1) {
 					descriptionObj.info.keywordInDescription = true;
 				}
-				if (descriptionObj.content.split(' ')[0] === keyword) {
+				if (descriptionObj.content.toLowerCase().split(' ')[0] === keyword) {
 					descriptionObj.info.keywordStartsDescription = true;
 				}
 			}
@@ -132,10 +132,10 @@ module.exports = {
 			headerTagObj.h1.info = {};
 			headerTagObj.h1.info.keywordInHeaderOne = false;
 			headerTagObj.h1.info.keywordStartsHeaderOne = false;
-			if (headerTagObj.h1.content.indexOf(keyword) > -1) {
+			if (headerTagObj.h1.content.toLowerCase().indexOf(keyword) > -1) {
 				headerTagObj.h1.info.keywordInHeaderOne = true;
 			}
-			if (headerTagObj.h1.content.split(' ')[0] === keyword) {
+			if (headerTagObj.h1.content.toLowerCase().split(' ')[0] === keyword) {
 				headerTagObj.h1.info.keywordStartsHeaderOne = true;
 			}
 		} else {
