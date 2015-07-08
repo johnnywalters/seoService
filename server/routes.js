@@ -73,7 +73,7 @@ module.exports = function (app) {
 						});
 					},
 					checkImage: function (callback) {
-						Seo.checkImages($('img'), function (checkImagesRes) {
+						Seo.checkImages($('img'), options.keyword, function (checkImagesRes) {
 							ogObject.images = checkImagesRes;
 							callback();
 						});
