@@ -18,6 +18,7 @@ describe('test getInfo:', function () {
 			Expect(result.body.result.keywords.content).to.be('Python programming language object oriented web free open source software license documentation download community');
 			Expect(result.body.result.keywords.status).to.be(1);
 			Expect(result.body.result.keywords.message).to.be('Keywords looks good!');
+			Expect(result.body.result.keywords.info.keywordCount).to.be(14);
 			Expect(result.body.result.title.content).to.be('Welcome to Python.org');
 			Expect(result.body.result.title.status).to.be(1);
 			Expect(result.body.result.title.message).to.be('Title tag looks good!');

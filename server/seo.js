@@ -94,12 +94,15 @@ module.exports = {
 	checkKeywords: function (meta, callback) {
 		var keywordsObj = {},
 			keys = Object.keys(meta);
+		keywordsObj.info = {};
 		keywordsObj.content = null;
+		keywordsObj.info.keywordCount = 0;
 		keys.forEach(function (key) {
 			if (meta[key].attribs && meta[key].attribs.name && meta[key].attribs.name === 'keywords') {
 				keywordsObj.content = meta[key].attribs.content;
 				keywordsObj.status = 1;
 				keywordsObj.message = 'Keywords looks good!';
+				keywordsObj.info.keywordCount = keywordsObj.content.split(' ').length;
 			}
 		});
 		if (keywordsObj.content === null) {
