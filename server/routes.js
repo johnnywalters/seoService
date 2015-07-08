@@ -16,6 +16,7 @@ module.exports = function (app) {
 				callback(true, err);
 			} else {
 				options.url = validURL;
+				options.keyword = options.keyword.toLowerCase();
 				getSEO(options, function (getSEOError, getSEOResults) {
 					if (!getSEOError && getSEOResults) {
 						callback(null, getSEOResults);

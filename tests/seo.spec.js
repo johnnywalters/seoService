@@ -41,7 +41,7 @@ describe('test getInfo:', function () {
 			Expect(result.body.result.url.message).to.be(undefined);
 			Expect(result.body.result.url.status).to.be(1);
 			Expect(result.body.result.url.info.questionMarkOrEqualsInURL).to.be(false);
-			Expect(result.body.result.url.info.keywordInURL).to.be(false);
+			Expect(result.body.result.url.info.keywordInURL).to.be(true);
 			Expect(result.body.result.url.info.underscoreInURL).to.be(false);
 			done();
 		});
@@ -63,7 +63,7 @@ describe('test getInfo:', function () {
 			Expect(result.body.result.title.status).to.be(1);
 			Expect(result.body.result.title.message).to.be('Title tag looks good!');
 			Expect(result.body.result.title.info.stringLength).to.be(45);
-			Expect(result.body.result.title.info.keywordInTitle).to.be(false);
+			Expect(result.body.result.title.info.keywordInTitle).to.be(true);
 			Expect(result.body.result.title.info.keywordStartsTitle).to.be(false);
 			Expect(result.body.result.headerTags.h1.status).to.be(1);
 			Expect(result.body.result.headerTags.h1.content).to.be('When it’s personal,choose Firefox.');
