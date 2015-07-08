@@ -200,21 +200,31 @@ module.exports = {
 	|
 	|	Tests: Unknown
 	*---------------------------------------------------------------------*/
-	checkImages: function (img, callback) {
+	checkImages: function (img, keyword, callback) {
 		var imagesObj = {},
 			keys = Object.keys(img);
 		imagesObj.info = {};
 		imagesObj.info.imageCount = 0;
 		imagesObj.info.URLArray = [];
+		imagesObj.info.imageNames = [];
 		imagesObj.info.missingAlt = [];
+		imagesObj.info.underscoreInImageName = [];
+		imagesObj.info.keywordInImageName = false;
 		imagesObj.status = 0;
 		keys.forEach(function (key) {
 			if (img[key].attribs && img[key].attribs.src) {
 				imagesObj.info.imageCount = imagesObj.info.imageCount + 1;
 				imagesObj.info.URLArray.push(img[key].attribs.src);
+				imagesObj.info.imageNames.push(img[key].attribs.src.substr(img[key].attribs.src.lastIndexOf('/') + 1));
 				imagesObj.status = 1;
 				if (!img[key].attribs.alt) {
 					imagesObj.info.missingAlt.push(img[key].attribs.src);
+				}
+				if (img[key].attribs.src.substr(img[key].attribs.src.lastIndexOf('/') + 1).indexOf('_') !== -1) {
+					imagesObj.info.underscoreInImageName.push(img[key].attribs.src.substr(img[key].attribs.src.lastIndexOf('/') + 1));
+				}
+				if (img[key].attribs.src.substr(img[key].attribs.src.lastIndexOf('/') + 1).indexOf(keyword) !== -1) {
+					imagesObj.info.keywordInImageName = true;
 				}
 			}
 		});
