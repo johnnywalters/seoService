@@ -235,5 +235,39 @@ module.exports = {
 			imagesObj.message = 'You have no images';
 		}
 		callback(imagesObj);
+	},
+
+	/*---------------------------------------------------------------------
+	|	checkLinks
+	|
+	|	Purpose: checking the link
+	|
+	|	Parameters: links
+	|
+	|	Returns: linksObj
+	|
+	|	TODO: Add more tests
+	|
+	|	Tests: Unknown
+	*---------------------------------------------------------------------*/
+	checkLinks: function (links, callback) {
+		var linksObj = {},
+			keys = Object.keys(links);
+		linksObj.info = {};
+		linksObj.info.linkCount = 0;
+		linksObj.info.noFollowCount = 0;
+		linksObj.info.externalCount = 0;
+		keys.forEach(function (key) {
+			if (links[key].attribs && links[key].attribs.href) {
+				linksObj.info.linkCount = linksObj.info.linkCount + 1;
+				if (links[key].attribs.rel && links[key].attribs.rel === 'nofollow') {
+					linksObj.info.noFollowCount = linksObj.info.noFollowCount + 1;
+				}
+				if (links[key].attribs.href.substring(0, 1) !== '/') {
+					linksObj.info.externalCount = linksObj.info.externalCount + 1;
+				}
+			}
+		});
+		callback(linksObj);
 	}
 };

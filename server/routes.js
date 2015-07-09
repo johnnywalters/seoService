@@ -77,6 +77,12 @@ module.exports = function (app) {
 							ogObject.images = checkImagesRes;
 							callback();
 						});
+					},
+					checkLinks: function (callback) {
+						Seo.checkLinks($('a'), function (checkLinksRes) {
+							ogObject.links = checkLinksRes;
+							callback();
+						});
 					}
 				},
 				function () {
