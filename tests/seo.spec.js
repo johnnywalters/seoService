@@ -104,6 +104,55 @@ describe('test getInfo:', function () {
 			done();
 		});
 	});
+	it('Valid URL Three', function (done) {
+		var data = {'options': {'url': 'https://en.wikipedia.org/wiki/Search_engine_optimization', 'keyword': 'seo'}};
+		supertest.post('/getInfo').send(data).end(function (err, result) {
+			Expect(result.res.statusCode).to.be(200);
+			Expect(result.body.success).to.be(true);
+			Expect(result.body.result.description.content).to.be(null);
+			Expect(result.body.result.description.status).to.be(0);
+			Expect(result.body.result.description.message).to.be('Your site needs a meta description.');
+			Expect(result.body.result.keywords.status).to.be(0);
+			Expect(result.body.result.keywords.message).to.be('Your site needs a meta keywords.');
+			Expect(result.body.result.title.content).to.be('Search engine optimization - Wikipedia, the free encyclopedia');
+			Expect(result.body.result.title.status).to.be(1);
+			Expect(result.body.result.title.message).to.be('Title tag looks good!');
+			Expect(result.body.result.title.info.stringLength).to.be(61);
+			Expect(result.body.result.title.info.keywordInTitle).to.be(false);
+			Expect(result.body.result.title.info.keywordStartsTitle).to.be(false);
+			Expect(result.body.result.headerTags.h1.status).to.be(1);
+			Expect(result.body.result.headerTags.h1.content).to.be('Search engine optimization');
+			Expect(result.body.result.headerTags.h1.info.keywordInHeader).to.be(false);
+			Expect(result.body.result.headerTags.h1.info.keywordStartsHeader).to.be(false);
+			Expect(result.body.result.headerTags.h2.status).to.be(1);
+			Expect(result.body.result.headerTags.h2.content).to.be('Contents');
+			Expect(result.body.result.headerTags.h3.status).to.be(1);
+			Expect(result.body.result.headerTags.h3.content).to.be('Relationship with Google');
+			Expect(result.body.result.headerTags.h3.info.keywordInHeader).to.be(false);
+			Expect(result.body.result.headerTags.h3.info.keywordStartsHeader).to.be(false);
+			Expect(result.body.result.headerTags.info.doHeaderingsExist).to.be(true);
+			Expect(result.body.result.headerTags.info.headerDuplicate).to.be(false);
+			Expect(result.body.result.images.message).to.be(undefined);
+			Expect(result.body.result.images.status).to.be(1);
+			Expect(result.body.result.images.info.imageCount).to.be(7);
+			Expect(result.body.result.images.info.URLArray[0]).to.be('//upload.wikimedia.org/wikipedia/commons/thumb/f/fc/Padlock-silver.svg/20px-Padlock-silver.svg.png');
+			Expect(result.body.result.images.info.URLArray[1]).to.be('//upload.wikimedia.org/wikipedia/commons/thumb/4/47/Sound-icon.svg/20px-Sound-icon.svg.png');
+			Expect(result.body.result.images.info.URLArray[2]).to.be('//upload.wikimedia.org/wikipedia/commons/thumb/1/1e/Websites_interlinking_to_illustrate_PageRank_percents.png/350px-Websites_interlinking_to_illustrate_PageRank_percents.png');
+			Expect(result.body.result.images.info.missingAlt[0]).to.be('//upload.wikimedia.org/wikipedia/commons/thumb/1/1e/Websites_interlinking_to_illustrate_PageRank_percents.png/350px-Websites_interlinking_to_illustrate_PageRank_percents.png');
+			Expect(result.body.result.images.info.imageNames[0]).to.be('20px-Padlock-silver.svg.png');
+			Expect(result.body.result.images.info.imageNames[1]).to.be('20px-Sound-icon.svg.png');
+			Expect(result.body.result.images.info.imageNames[2]).to.be('350px-Websites_interlinking_to_illustrate_PageRank_percents.png');
+			Expect(result.body.result.images.info.underscoreInImageName[0]).to.be('350px-Websites_interlinking_to_illustrate_PageRank_percents.png');
+			Expect(result.body.result.images.info.keywordInImageName).to.be(false);
+			Expect(result.body.result.url.content).to.be('https://en.wikipedia.org/wiki/Search_engine_optimization');
+			Expect(result.body.result.url.message).to.be(undefined);
+			Expect(result.body.result.url.status).to.be(1);
+			Expect(result.body.result.url.info.questionMarkOrEqualsInURL).to.be(false);
+			Expect(result.body.result.url.info.keywordInURL).to.be(false);
+			Expect(result.body.result.url.info.underscoreInURL).to.be(true);
+			done();
+		});
+	});
 	it('Invalid - No URL', function (done) {
 		var data = {'options': {'url': '', 'keyword': 'Python'}};
 		supertest.post('/getInfo').send(data).end(function (err, result) {
