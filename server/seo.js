@@ -250,7 +250,7 @@ module.exports = {
 	|
 	|	Tests: Unknown
 	*---------------------------------------------------------------------*/
-	checkLinks: function (links, callback) {
+	checkLinks: function (links, orgURL, callback) {
 		var linksObj = {},
 			keys = Object.keys(links);
 		linksObj.info = {};
@@ -263,8 +263,14 @@ module.exports = {
 				if (links[key].attribs.rel && links[key].attribs.rel === 'nofollow') {
 					linksObj.info.noFollowCount = linksObj.info.noFollowCount + 1;
 				}
-				if (links[key].attribs.href.substring(0, 1) !== '/') {
-					linksObj.info.externalCount = linksObj.info.externalCount + 1;
+				if (links[key].attribs.href.substring(0, 1) !== '/' && links[key].attribs.href.substring(0, 1) !== '#' && links[key].attribs.href.substring(0, 10) !== 'javascript') {
+					var orgURLDomain = orgURL.split('/');
+					orgURLDomain = orgURLDomain[2].replace('www.', '');
+					var linkDomain = links[key].attribs.href.split('/');
+					linkDomain = linkDomain[2].replace('www.', '');
+					if (linkDomain !== orgURLDomain) {
+						linksObj.info.externalCount = linksObj.info.externalCount + 1;
+					}
 				}
 			}
 		});

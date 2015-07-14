@@ -51,7 +51,7 @@ describe('test getInfo:', function () {
 			Expect(result.body.result.url.info.underscoreInURL).to.be(false);
 			Expect(result.body.result.links.info.linkCount).to.be(192);
 			Expect(result.body.result.links.info.noFollowCount).to.be(0);
-			Expect(result.body.result.links.info.externalCount).to.be(73);
+			Expect(result.body.result.links.info.externalCount).to.be(60);
 			done();
 		});
 	});
@@ -158,7 +158,7 @@ describe('test getInfo:', function () {
 			Expect(result.body.result.url.info.underscoreInURL).to.be(true);
 			Expect(result.body.result.links.info.linkCount).to.be(543);
 			Expect(result.body.result.links.info.noFollowCount).to.be(70);
-			Expect(result.body.result.links.info.externalCount).to.be(220);
+			Expect(result.body.result.links.info.externalCount).to.be(73);
 			done();
 		});
 	});

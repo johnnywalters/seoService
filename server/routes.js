@@ -79,7 +79,7 @@ module.exports = function (app) {
 						});
 					},
 					checkLinks: function (callback) {
-						Seo.checkLinks($('a'), function (checkLinksRes) {
+						Seo.checkLinks($('a'), options.url, function (checkLinksRes) {
 							ogObject.links = checkLinksRes;
 							callback();
 						});
