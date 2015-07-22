@@ -140,14 +140,14 @@ describe('test getInfo:', function () {
 			Expect(result.body.result.headerTags.info.headerDuplicate).to.be(false);
 			Expect(result.body.result.images.message).to.be(undefined);
 			Expect(result.body.result.images.status).to.be(1);
-			Expect(result.body.result.images.info.imageCount).to.be(7);
+			Expect(result.body.result.images.info.imageCount).to.be(8);
 			Expect(result.body.result.images.info.URLArray[0]).to.be('//upload.wikimedia.org/wikipedia/commons/thumb/f/fc/Padlock-silver.svg/20px-Padlock-silver.svg.png');
 			Expect(result.body.result.images.info.URLArray[1]).to.be('//upload.wikimedia.org/wikipedia/commons/thumb/4/47/Sound-icon.svg/20px-Sound-icon.svg.png');
-			Expect(result.body.result.images.info.URLArray[2]).to.be('//upload.wikimedia.org/wikipedia/commons/thumb/1/1e/Websites_interlinking_to_illustrate_PageRank_percents.png/350px-Websites_interlinking_to_illustrate_PageRank_percents.png');
-			Expect(result.body.result.images.info.missingAlt[0]).to.be('//upload.wikimedia.org/wikipedia/commons/thumb/1/1e/Websites_interlinking_to_illustrate_PageRank_percents.png/350px-Websites_interlinking_to_illustrate_PageRank_percents.png');
+			Expect(result.body.result.images.info.URLArray[2]).to.be('//upload.wikimedia.org/wikipedia/commons/thumb/a/aa/Merge-arrow.svg/50px-Merge-arrow.svg.png');
+			Expect(result.body.result.images.info.missingAlt[0]).to.be('//upload.wikimedia.org/wikipedia/commons/thumb/a/aa/Merge-arrow.svg/50px-Merge-arrow.svg.png');
 			Expect(result.body.result.images.info.imageNames[0]).to.be('20px-Padlock-silver.svg.png');
 			Expect(result.body.result.images.info.imageNames[1]).to.be('20px-Sound-icon.svg.png');
-			Expect(result.body.result.images.info.imageNames[2]).to.be('350px-Websites_interlinking_to_illustrate_PageRank_percents.png');
+			Expect(result.body.result.images.info.imageNames[2]).to.be('50px-Merge-arrow.svg.png');
 			Expect(result.body.result.images.info.underscoreInImageName[0]).to.be('350px-Websites_interlinking_to_illustrate_PageRank_percents.png');
 			Expect(result.body.result.images.info.keywordInImageName).to.be(false);
 			Expect(result.body.result.url.content).to.be('https://en.wikipedia.org/wiki/Search_engine_optimization');
@@ -156,7 +156,7 @@ describe('test getInfo:', function () {
 			Expect(result.body.result.url.info.questionMarkOrEqualsInURL).to.be(false);
 			Expect(result.body.result.url.info.keywordInURL).to.be(false);
 			Expect(result.body.result.url.info.underscoreInURL).to.be(true);
-			Expect(result.body.result.links.info.linkCount).to.be(543);
+			Expect(result.body.result.links.info.linkCount).to.be(549);
 			Expect(result.body.result.links.info.noFollowCount).to.be(70);
 			Expect(result.body.result.links.info.externalCount).to.be(73);
 			done();
