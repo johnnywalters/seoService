@@ -267,7 +267,13 @@ module.exports = {
 					var orgURLDomain = orgURL.split('/');
 					orgURLDomain = orgURLDomain[2].replace('www.', '');
 					var linkDomain = links[key].attribs.href.split('/');
-					linkDomain = linkDomain[2].replace('www.', '');
+					console.log('linkDomainb:', linkDomain);
+					if (linkDomain[2]) {
+						linkDomain = linkDomain[2].replace('www.', '');
+					} else {
+						linkDomain = linkDomain[0].replace('www.', '');
+					}
+					console.log('linkDomaina:', linkDomain);
 					if (linkDomain !== orgURLDomain) {
 						linksObj.info.externalCount = linksObj.info.externalCount + 1;
 					}
