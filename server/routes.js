@@ -67,7 +67,7 @@ module.exports = function (app) {
 						});
 					},
 					checkHeaderTags: function (callback) {
-						Seo.checkHeaderTags($('h1').first(), $('h2').first(), $('h3').first(), options.keyword, function (checkHeaderTagsRes) {
+						Seo.checkHeaderTags($('h1').first(), $('h1'), $('h2').first(), $('h2'), $('h3').first(), $('h3'), options.keyword, function (checkHeaderTagsRes) {
 							ogObject.headerTags = checkHeaderTagsRes;
 							callback();
 						});

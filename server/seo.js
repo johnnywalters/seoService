@@ -125,7 +125,9 @@ module.exports = {
 	|
 	|	Tests: Unknown
 	*---------------------------------------------------------------------*/
-	checkHeaderTags: function (h1, h2, h3, keyword, callback) {
+	checkHeaderTags: function (h1, h1Arr, h2, h2Arr, h3, h3Arr, keyword, callback) {
+		// console.log('h1:', h1);
+		// console.log('test:', h1Arr);
 		var headerTagObj = {};
 		headerTagObj.info = {};
 		headerTagObj.h1 = {};
@@ -141,6 +143,15 @@ module.exports = {
 			if (headerTagObj.h1.content.toLowerCase().split(' ')[0] === keyword) {
 				headerTagObj.h1.info.keywordStartsHeader = true;
 			}
+			var h1Keys = Object.keys(h1Arr);
+			headerTagObj.h1.info.keywordInAnyHeaders = false;
+			h1Keys.forEach(function (key) {
+				if (h1Arr[key] && h1Arr[key].name && h1Arr[key].name === 'h1' && h1Arr[key].children[0].data) {
+					if (h1Arr[key].children[0].data.toLowerCase().indexOf(keyword) > -1) {
+						headerTagObj.h1.info.keywordInHeader = true;
+					}
+				}
+			});
 		} else {
 			headerTagObj.h1.status = 0;
 			headerTagObj.h1.message = 'There is no text in the first H1 on your page';
@@ -158,6 +169,15 @@ module.exports = {
 			if (headerTagObj.h2.content.toLowerCase().split(' ')[0] === keyword) {
 				headerTagObj.h2.info.keywordStartsHeader = true;
 			}
+			var h2Keys = Object.keys(h2Arr);
+			headerTagObj.h2.info.keywordInAnyHeaders = false;
+			h2Keys.forEach(function (key) {
+				if (h2Arr[key] && h2Arr[key].name && h2Arr[key].name === 'h2' && h2Arr[key].children[0].data) {
+					if (h2Arr[key].children[0].data.toLowerCase().indexOf(keyword) > -1) {
+						headerTagObj.h2.info.keywordInHeader = true;
+					}
+				}
+			});
 		} else {
 			headerTagObj.h2.status = 0;
 			headerTagObj.h2.message = 'There is no text in the first H2 on your page';
@@ -175,6 +195,15 @@ module.exports = {
 			if (headerTagObj.h3.content.toLowerCase().split(' ')[0] === keyword) {
 				headerTagObj.h3.info.keywordStartsHeader = true;
 			}
+			var h3Keys = Object.keys(h3Arr);
+			headerTagObj.h3.info.keywordInAnyHeaders = false;
+			h3Keys.forEach(function (key) {
+				if (h3Arr[key] && h3Arr[key].name && h3Arr[key].name === 'h3' && h3Arr[key].children[0].data) {
+					if (h3Arr[key].children[0].data.toLowerCase().indexOf(keyword) > -1) {
+						headerTagObj.h3.info.keywordInHeader = true;
+					}
+				}
+			});
 		} else {
 			headerTagObj.h3.status = 0;
 			headerTagObj.h3.message = 'There is no text in the first H3 on your page';
