@@ -144,7 +144,7 @@ describe('test getInfo:', function () {
 			Expect(result.body.result.images.info.URLArray[0]).to.be('//upload.wikimedia.org/wikipedia/commons/thumb/f/fc/Padlock-silver.svg/20px-Padlock-silver.svg.png');
 			Expect(result.body.result.images.info.URLArray[1]).to.be('//upload.wikimedia.org/wikipedia/commons/thumb/4/47/Sound-icon.svg/20px-Sound-icon.svg.png');
 			Expect(result.body.result.images.info.URLArray[2]).to.be('//upload.wikimedia.org/wikipedia/commons/thumb/a/aa/Merge-arrow.svg/50px-Merge-arrow.svg.png');
-			Expect(result.body.result.images.info.missingAlt[0]).to.be('//upload.wikimedia.org/wikipedia/commons/thumb/a/aa/Merge-arrow.svg/50px-Merge-arrow.svg.png');
+			Expect(result.body.result.images.info.missingAlt[0]).to.be('50px-Merge-arrow.svg.png');
 			Expect(result.body.result.images.info.imageNames[0]).to.be('20px-Padlock-silver.svg.png');
 			Expect(result.body.result.images.info.imageNames[1]).to.be('20px-Sound-icon.svg.png');
 			Expect(result.body.result.images.info.imageNames[2]).to.be('50px-Merge-arrow.svg.png');

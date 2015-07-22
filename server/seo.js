@@ -221,7 +221,7 @@ module.exports = {
 				imagesObj.info.imageNames.push(img[key].attribs.src.substr(img[key].attribs.src.lastIndexOf('/') + 1));
 				imagesObj.status = 1;
 				if (!img[key].attribs.alt) {
-					imagesObj.info.missingAlt.push(img[key].attribs.src);
+					imagesObj.info.missingAlt.push(img[key].attribs.src.substr(img[key].attribs.src.lastIndexOf('/') + 1));
 				}
 				if (img[key].attribs.src.substr(img[key].attribs.src.lastIndexOf('/') + 1).indexOf('_') !== -1) {
 					imagesObj.info.underscoreInImageName.push(img[key].attribs.src.substr(img[key].attribs.src.lastIndexOf('/') + 1));
