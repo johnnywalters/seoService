@@ -179,9 +179,9 @@ module.exports = {
 			headerTagObj.h3.status = 0;
 			headerTagObj.h3.message = 'There is no text in the first H3 on your page';
 		}
-		headerTagObj.info.doHeaderingsExist = false;
-		if (headerTagObj.h1.status === 1 || headerTagObj.h2.status === 1 || headerTagObj.h3.status === 1) {
-			headerTagObj.info.doHeaderingsExist = true;
+		headerTagObj.info.doHeadersExist = false;
+		if (headerTagObj.h1.status === 1 && headerTagObj.h2.status === 1 && headerTagObj.h3.status === 1) {
+			headerTagObj.info.doHeadersExist = true;
 		}
 		headerTagObj.info.headerDuplicate = false;
 		if ((headerTagObj.h1.content && headerTagObj.h2.content && headerTagObj.h1.content === headerTagObj.h2.content) || (headerTagObj.h1.content && headerTagObj.h3.content && headerTagObj.h1.content === headerTagObj.h3.content) || (headerTagObj.h2.content && headerTagObj.h3.content && headerTagObj.h2.content === headerTagObj.h3.content)) {
