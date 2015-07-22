@@ -148,7 +148,7 @@ module.exports = {
 			h1Keys.forEach(function (key) {
 				if (h1Arr[key] && h1Arr[key].name && h1Arr[key].name === 'h1' && h1Arr[key].children[0].data) {
 					if (h1Arr[key].children[0].data.toLowerCase().indexOf(keyword) > -1) {
-						headerTagObj.h1.info.keywordInHeader = true;
+						headerTagObj.h1.info.keywordInAnyHeaders = true;
 					}
 				}
 			});
@@ -174,7 +174,7 @@ module.exports = {
 			h2Keys.forEach(function (key) {
 				if (h2Arr[key] && h2Arr[key].name && h2Arr[key].name === 'h2' && h2Arr[key].children[0].data) {
 					if (h2Arr[key].children[0].data.toLowerCase().indexOf(keyword) > -1) {
-						headerTagObj.h2.info.keywordInHeader = true;
+						headerTagObj.h2.info.keywordInAnyHeaders = true;
 					}
 				}
 			});
@@ -200,7 +200,7 @@ module.exports = {
 			h3Keys.forEach(function (key) {
 				if (h3Arr[key] && h3Arr[key].name && h3Arr[key].name === 'h3' && h3Arr[key].children[0].data) {
 					if (h3Arr[key].children[0].data.toLowerCase().indexOf(keyword) > -1) {
-						headerTagObj.h3.info.keywordInHeader = true;
+						headerTagObj.h3.info.keywordInAnyHeaders = true;
 					}
 				}
 			});
