@@ -54,6 +54,7 @@ describe('test getInfo:', function () {
 			Expect(result.body.result.links.info.linkCount).to.be(192);
 			Expect(result.body.result.links.info.noFollowCount).to.be(0);
 			Expect(result.body.result.links.info.externalCount).to.be(60);
+			Expect(result.body.result.links.info.keywordInLink).to.be(true);
 			Expect(result.body.result.miscellaneous.info.hasFavicon).to.be(true);
 			Expect(result.body.result.miscellaneous.info.hasAppleIcon).to.be(true);
 			Expect(result.body.result.miscellaneous.info.hasViewPort).to.be(true);
@@ -115,6 +116,7 @@ describe('test getInfo:', function () {
 			Expect(result.body.result.links.info.linkCount).to.be(56);
 			Expect(result.body.result.links.info.noFollowCount).to.be(0);
 			Expect(result.body.result.links.info.externalCount).to.be(30);
+			Expect(result.body.result.links.info.keywordInLink).to.be(false);
 			Expect(result.body.result.miscellaneous.info.hasFavicon).to.be(true);
 			Expect(result.body.result.miscellaneous.info.hasAppleIcon).to.be(true);
 			Expect(result.body.result.miscellaneous.info.hasViewPort).to.be(true);
@@ -176,6 +178,7 @@ describe('test getInfo:', function () {
 			Expect(result.body.result.links.info.linkCount).to.be(549);
 			Expect(result.body.result.links.info.noFollowCount).to.be(70);
 			Expect(result.body.result.links.info.externalCount).to.be(73);
+			Expect(result.body.result.links.info.keywordInLink).to.be(true);
 			Expect(result.body.result.miscellaneous.info.hasFavicon).to.be(true);
 			Expect(result.body.result.miscellaneous.info.hasAppleIcon).to.be(true);
 			Expect(result.body.result.miscellaneous.info.hasViewPort).to.be(false);
@@ -240,6 +243,7 @@ describe('test getInfo:', function () {
 			Expect(result.body.result.links.info.linkCount).to.be(11);
 			Expect(result.body.result.links.info.noFollowCount).to.be(1);
 			Expect(result.body.result.links.info.externalCount).to.be(4);
+			Expect(result.body.result.links.info.keywordInLink).to.be(true);
 			Expect(result.body.result.miscellaneous.info.hasFavicon).to.be(true);
 			Expect(result.body.result.miscellaneous.info.hasAppleIcon).to.be(true);
 			Expect(result.body.result.miscellaneous.info.hasViewPort).to.be(true);

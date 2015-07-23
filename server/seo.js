@@ -269,7 +269,7 @@ module.exports = {
 	|
 	|	Purpose: checking the link
 	|
-	|	Parameters: links
+	|	Parameters: links, orgURL, keyword
 	|
 	|	Returns: linksObj
 	|
@@ -277,15 +277,21 @@ module.exports = {
 	|
 	|	Tests: Unknown
 	*---------------------------------------------------------------------*/
-	checkLinks: function (links, orgURL, callback) {
+	checkLinks: function (links, orgURL, keyword, callback) {
 		var linksObj = {},
 			keys = Object.keys(links);
 		linksObj.info = {};
 		linksObj.info.linkCount = 0;
 		linksObj.info.noFollowCount = 0;
 		linksObj.info.externalCount = 0;
+		linksObj.info.keywordInLink = false;
 		keys.forEach(function (key) {
 			if (links[key].attribs && links[key].attribs.href) {
+				if (links[key].children[0] && links[key].children[0].data) {
+					if (links[key].children[0].data.toLowerCase().indexOf(keyword) > -1) {
+						linksObj.info.keywordInLink = true;
+					}
+				}
 				linksObj.info.linkCount = linksObj.info.linkCount + 1;
 				if (links[key].attribs.rel && links[key].attribs.rel === 'nofollow') {
 					linksObj.info.noFollowCount = linksObj.info.noFollowCount + 1;
