@@ -4,6 +4,7 @@ var request = require('supertest'),
 	Expect = require('expect.js');
 
 describe('test getInfo:', function () {
+	this.timeout(10000);
 	it('Valid URL One', function (done) {
 		var data = {'options': {'url': 'https://www.python.org/', 'keyword': 'Python'}};
 		supertest.post('/getInfo').send(data).end(function (err, result) {
@@ -56,6 +57,7 @@ describe('test getInfo:', function () {
 			Expect(result.body.result.miscellaneous.info.hasFavicon).to.be(true);
 			Expect(result.body.result.miscellaneous.info.hasAppleIcon).to.be(true);
 			Expect(result.body.result.miscellaneous.info.hasViewPort).to.be(true);
+			Expect(result.body.result.robots.status).to.be(1);
 			done();
 		});
 	});
@@ -116,6 +118,7 @@ describe('test getInfo:', function () {
 			Expect(result.body.result.miscellaneous.info.hasFavicon).to.be(true);
 			Expect(result.body.result.miscellaneous.info.hasAppleIcon).to.be(true);
 			Expect(result.body.result.miscellaneous.info.hasViewPort).to.be(true);
+			Expect(result.body.result.robots.status).to.be(1);
 			done();
 		});
 	});
@@ -176,6 +179,7 @@ describe('test getInfo:', function () {
 			Expect(result.body.result.miscellaneous.info.hasFavicon).to.be(true);
 			Expect(result.body.result.miscellaneous.info.hasAppleIcon).to.be(true);
 			Expect(result.body.result.miscellaneous.info.hasViewPort).to.be(false);
+			Expect(result.body.result.robots.status).to.be(1);
 			done();
 		});
 	});
@@ -239,6 +243,7 @@ describe('test getInfo:', function () {
 			Expect(result.body.result.miscellaneous.info.hasFavicon).to.be(true);
 			Expect(result.body.result.miscellaneous.info.hasAppleIcon).to.be(true);
 			Expect(result.body.result.miscellaneous.info.hasViewPort).to.be(true);
+			Expect(result.body.result.robots.status).to.be(1);
 			done();
 		});
 	});

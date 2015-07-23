@@ -2,6 +2,7 @@ var request = require('request'),
 	cheerio = require('cheerio'),
 	async = require('async'),
 	Seo = require('./seo.js'),
+	extractDomain = require('./utils.js').extractDomain,
 	validateVars = require('./utils.js').validateVars;
 
 module.exports = function (app) {
@@ -112,7 +113,20 @@ module.exports = function (app) {
 						urlObj.info.underscoreInURL = true;
 					}
 					ogObject.url = urlObj;
-					callback(null, ogObject);
+					extractDomain(options.url, function (domain) {
+						request('http://' + domain + '/robots.txt', function (err, response) {
+							var robotsObj = {};
+							robotsObj.status = 0;
+							if (err || response.statusCode === '404') {
+								robotsObj.status = 0;
+								robotsObj.message = 'Could not find robots.txt';
+							} else {
+								robotsObj.status = 1;
+							}
+							ogObject.robots = robotsObj;
+							callback(null, ogObject);
+						});
+					});
 				});
 			}
 		});

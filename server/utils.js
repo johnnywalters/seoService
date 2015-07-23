@@ -1,4 +1,20 @@
 /*
+ * extract domain
+ * @param string url - user input url
+ * @param function callback
+ */
+exports.extractDomain = function (url, callback) {
+	var domain;
+	if (url.indexOf('://') > -1) {
+		domain = url.split('/')[2];
+	} else {
+		domain = url.split('/')[0];
+	}
+	domain = domain.split(':')[0];
+	callback(domain);
+};
+
+/*
  * validate var
  * @param string var - user input
  * @param function callback

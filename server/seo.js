@@ -126,8 +126,6 @@ module.exports = {
 	|	Tests: Unknown
 	*---------------------------------------------------------------------*/
 	checkHeaderTags: function (h1, h1Arr, h2, h2Arr, h3, h3Arr, keyword, callback) {
-		// console.log('h1:', h1);
-		// console.log('test:', h1Arr);
 		var headerTagObj = {};
 		headerTagObj.info = {};
 		headerTagObj.h1 = {};
