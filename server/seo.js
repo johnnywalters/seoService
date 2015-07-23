@@ -255,7 +255,7 @@ module.exports = {
 				if (img[key].attribs.src.substr(img[key].attribs.src.lastIndexOf('/') + 1).indexOf('_') !== -1) {
 					imagesObj.info.underscoreInImageName.push(img[key].attribs.src.substr(img[key].attribs.src.lastIndexOf('/') + 1));
 				}
-				if (img[key].attribs.src.substr(img[key].attribs.src.lastIndexOf('/') + 1).indexOf(keyword) !== -1) {
+				if (img[key].attribs.src.substr(img[key].attribs.src.lastIndexOf('/') + 1).replace(/-/g, ' ').indexOf(keyword) !== -1) {
 					imagesObj.info.keywordInImageName = true;
 				}
 			}

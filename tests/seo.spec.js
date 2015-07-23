@@ -226,7 +226,7 @@ describe('test getInfo:', function () {
 			Expect(result.body.result.images.info.imageNames[1]).to.be('howdy-partner.jpg');
 			Expect(result.body.result.images.info.imageNames[2]).to.be('simple-howdy-parter.jpg');
 			Expect(result.body.result.images.info.underscoreInImageName).to.be.empty();
-			Expect(result.body.result.images.info.keywordInImageName).to.be(false);
+			Expect(result.body.result.images.info.keywordInImageName).to.be(true);
 			Expect(result.body.result.url.content).to.be('http://www.johnnywalters.com/tests/howdy-partner.html');
 			Expect(result.body.result.url.message).to.be(undefined);
 			Expect(result.body.result.url.status).to.be(1);
