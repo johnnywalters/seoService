@@ -308,5 +308,42 @@ module.exports = {
 			}
 		});
 		callback(linksObj);
+	},
+
+	/*---------------------------------------------------------------------
+	|	checkMiscellaneous
+	|
+	|	Purpose: checking the miscellaneous items
+	|
+	|	Parameters: link
+	|
+	|	Returns: miscellaneousObj
+	|
+	|	TODO: Add more tests
+	|
+	|	Tests: Unknown
+	*---------------------------------------------------------------------*/
+	checkMiscellaneous: function (link, meta, callback) {
+		var miscellaneousObj = {},
+			linkKeys = Object.keys(link),
+			metaKeys = Object.keys(meta);
+		miscellaneousObj.info = {};
+		miscellaneousObj.info.hasFavicon = false;
+		miscellaneousObj.info.hasAppleIcon = false;
+		linkKeys.forEach(function (key) {
+			if (link[key].attribs && link[key].attribs.rel && link[key].attribs.rel.indexOf('icon') !== -1) {
+				miscellaneousObj.info.hasFavicon = true;
+			}
+			if (link[key].attribs && link[key].attribs.rel && link[key].attribs.rel.indexOf('apple-touch-icon') !== -1) {
+				miscellaneousObj.info.hasAppleIcon = true;
+			}
+		});
+		miscellaneousObj.info.hasViewPort = false;
+		metaKeys.forEach(function (key) {
+			if (meta[key].attribs && meta[key].attribs.name && meta[key].attribs.name === 'viewport') {
+				miscellaneousObj.info.hasViewPort = true;
+			}
+		});
+		callback(miscellaneousObj);
 	}
 };

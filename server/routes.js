@@ -83,6 +83,12 @@ module.exports = function (app) {
 							ogObject.links = checkLinksRes;
 							callback();
 						});
+					},
+					checkMiscellaneous: function (callback) {
+						Seo.checkMiscellaneous($('link'), $('meta'), function (checkMiscellaneousRes) {
+							ogObject.miscellaneous = checkMiscellaneousRes;
+							callback();
+						});
 					}
 				},
 				function () {
