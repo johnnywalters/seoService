@@ -260,4 +260,12 @@ describe('test getInfo:', function () {
 			done();
 		});
 	});
+	it('Valid - Two Word Keyword', function (done) {
+		var data = {'options': {'url': 'http://www.johnnywalters.com/tests/howdy-partner.html', 'keyword': 'test test'}};
+		supertest.post('/getInfo').send(data).end(function (err, result) {
+			Expect(result.res.statusCode).to.be(200);
+			Expect(result.body.success).to.be(true);
+			done();
+		});
+	});
 });

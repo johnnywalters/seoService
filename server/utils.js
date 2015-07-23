@@ -27,7 +27,7 @@ exports.validateVars = function (inputUrl, inputKeyword, callback) {
 	 */
 	var validateKeyword = function (inputKeyword) {
 		if (validateVar(inputKeyword)) {
-			var regex = /^(?=.*[a-zA-Z])([a-zA-Z0-9.@_]+){2,40}$/;
+			var regex = /^[A-Za-z0-9 _]*[A-Za-z0-9][A-Za-z0-9 _]*$/;
 			if (regex.test(inputKeyword)) {
 				return;
 			} else {
