@@ -180,7 +180,7 @@ describe('test getInfo:', function () {
 		});
 	});
 	it('Valid URL Four', function (done) {
-		var data = {'options': {'url': 'http://www.johnnywalters.com/tests/howdy-partner.html', 'keyword': 'Partner'}};
+		var data = {'options': {'url': 'http://www.johnnywalters.com/tests/howdy-partner.html', 'keyword': 'Howdy Partner'}};
 		supertest.post('/getInfo').send(data).end(function (err, result) {
 			Expect(result.res.statusCode).to.be(200);
 			Expect(result.body.success).to.be(true);
@@ -189,7 +189,7 @@ describe('test getInfo:', function () {
 			Expect(result.body.result.description.message).to.be('It\'s good that you have a meta description, but it should be between 140 and 170 characters. Your\'s is at 128 characters');
 			Expect(result.body.result.description.info.stringLength).to.be(128);
 			Expect(result.body.result.description.info.keywordInDescription).to.be(true);
-			Expect(result.body.result.description.info.keywordStartsDescription).to.be(false);
+			Expect(result.body.result.description.info.keywordStartsDescription).to.be(true);
 			Expect(result.body.result.keywords.status).to.be(0);
 			Expect(result.body.result.keywords.message).to.be('Your site needs a meta keywords.');
 			Expect(result.body.result.title.content).to.be('Howdy Partner Interactive Website');
@@ -197,11 +197,11 @@ describe('test getInfo:', function () {
 			Expect(result.body.result.title.message).to.be('Title tag looks good!');
 			Expect(result.body.result.title.info.stringLength).to.be(33);
 			Expect(result.body.result.title.info.keywordInTitle).to.be(true);
-			Expect(result.body.result.title.info.keywordStartsTitle).to.be(false);
+			Expect(result.body.result.title.info.keywordStartsTitle).to.be(true);
 			Expect(result.body.result.headerTags.h1.status).to.be(1);
 			Expect(result.body.result.headerTags.h1.content).to.be('Howdy Partner Website');
 			Expect(result.body.result.headerTags.h1.info.keywordInHeader).to.be(true);
-			Expect(result.body.result.headerTags.h1.info.keywordStartsHeader).to.be(false);
+			Expect(result.body.result.headerTags.h1.info.keywordStartsHeader).to.be(true);
 			Expect(result.body.result.headerTags.h1.info.keywordInAnyHeaders).to.be(true);
 			Expect(result.body.result.headerTags.h2.status).to.be(1);
 			Expect(result.body.result.headerTags.h2.content).to.be('We like to say');
@@ -226,12 +226,12 @@ describe('test getInfo:', function () {
 			Expect(result.body.result.images.info.imageNames[1]).to.be('howdy-partner.jpg');
 			Expect(result.body.result.images.info.imageNames[2]).to.be('simple-howdy-parter.jpg');
 			Expect(result.body.result.images.info.underscoreInImageName).to.be.empty();
-			Expect(result.body.result.images.info.keywordInImageName).to.be(true);
+			Expect(result.body.result.images.info.keywordInImageName).to.be(false);
 			Expect(result.body.result.url.content).to.be('http://www.johnnywalters.com/tests/howdy-partner.html');
 			Expect(result.body.result.url.message).to.be(undefined);
 			Expect(result.body.result.url.status).to.be(1);
 			Expect(result.body.result.url.info.questionMarkOrEqualsInURL).to.be(false);
-			Expect(result.body.result.url.info.keywordInURL).to.be(true);
+			Expect(result.body.result.url.info.keywordInURL).to.be(false);
 			Expect(result.body.result.url.info.underscoreInURL).to.be(false);
 			Expect(result.body.result.links.info.linkCount).to.be(11);
 			Expect(result.body.result.links.info.noFollowCount).to.be(1);
@@ -257,14 +257,6 @@ describe('test getInfo:', function () {
 			Expect(result.res.statusCode).to.be(200);
 			Expect(result.body.success).to.be(false);
 			Expect(result.body.result).to.be('No Keyword');
-			done();
-		});
-	});
-	it('Valid - Two Word Keyword', function (done) {
-		var data = {'options': {'url': 'http://www.johnnywalters.com/tests/howdy-partner.html', 'keyword': 'test test'}};
-		supertest.post('/getInfo').send(data).end(function (err, result) {
-			Expect(result.res.statusCode).to.be(200);
-			Expect(result.body.success).to.be(true);
 			done();
 		});
 	});
