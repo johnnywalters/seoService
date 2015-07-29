@@ -86,7 +86,7 @@ module.exports = function (app) {
 						});
 					},
 					checkMiscellaneous: function (callback) {
-						Seo.checkMiscellaneous($('link'), $('meta'), function (checkMiscellaneousRes) {
+						Seo.checkMiscellaneous($('link'), $('meta'), $('body'), function (checkMiscellaneousRes) {
 							ogObject.miscellaneous = checkMiscellaneousRes;
 							callback();
 						});
