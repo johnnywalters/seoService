@@ -327,7 +327,7 @@ module.exports = {
 	|
 	|	Tests: Unknown
 	*---------------------------------------------------------------------*/
-	checkMiscellaneous: function (link, meta, body, keyword, callback) {
+	checkMiscellaneous: function (link, meta, body, styleTags, inLineStyles, keyword, callback) {
 		var miscellaneousObj = {},
 			linkKeys = Object.keys(link),
 			metaKeys = Object.keys(meta);
@@ -352,6 +352,12 @@ module.exports = {
 		miscellaneousObj.info.htmlLength = body.html().length;
 		miscellaneousObj.info.textToHTMLRatio = (miscellaneousObj.info.textLength / miscellaneousObj.info.htmlLength).toFixed(2) * 100;
 		miscellaneousObj.info.keywordInTextCount = body.text().toLowerCase().split(keyword).length - 1;
+		miscellaneousObj.info.hasInlineStylesOrStyleTags = false;
+		miscellaneousObj.info.styleTagsCount = styleTags;
+		miscellaneousObj.info.inLineStylesCount = inLineStyles;
+		if (styleTags + inLineStyles > 0) {
+			miscellaneousObj.info.hasInlineStylesOrStyleTags = true;
+		}
 		callback(miscellaneousObj);
 	}
 };
