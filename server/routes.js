@@ -104,13 +104,15 @@ module.exports = function (app) {
 					if (urlObj.content.indexOf('?') === -1 && urlObj.content.indexOf('=') === -1) {
 						urlObj.info.questionMarkOrEqualsInURL = false;
 					}
-					urlObj.info.keywordInURL = false;
-					if (urlObj.content.indexOf(options.keyword) > -1) {
-						urlObj.info.keywordInURL = true;
-					}
 					urlObj.info.underscoreInURL = false;
 					if (urlObj.content.indexOf('_') > -1) {
 						urlObj.info.underscoreInURL = true;
+					}
+					var keywordWithNoSpaces = options.keyword.replace(/ /g, ''),
+						keywordWithDashes = options.keyword.replace(/ /g, '-');
+					urlObj.info.keywordInURL = false;
+					if (urlObj.content.toLowerCase().indexOf(keywordWithNoSpaces) > -1 || urlObj.content.toLowerCase().indexOf(keywordWithDashes) > -1) {
+						urlObj.info.keywordInURL = true;
 					}
 					ogObject.url = urlObj;
 					extractDomain(options.url, function (domain) {

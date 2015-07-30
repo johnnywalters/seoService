@@ -250,7 +250,7 @@ describe('test getInfo:', function () {
 			Expect(result.body.result.url.message).to.be(undefined);
 			Expect(result.body.result.url.status).to.be(1);
 			Expect(result.body.result.url.info.questionMarkOrEqualsInURL).to.be(false);
-			Expect(result.body.result.url.info.keywordInURL).to.be(false);
+			Expect(result.body.result.url.info.keywordInURL).to.be(true);
 			Expect(result.body.result.url.info.underscoreInURL).to.be(false);
 			Expect(result.body.result.links.info.linkCount).to.be(11);
 			Expect(result.body.result.links.info.noFollowCount).to.be(1);
