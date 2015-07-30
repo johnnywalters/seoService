@@ -114,6 +114,12 @@ module.exports = function (app) {
 					if (urlObj.content.toLowerCase().indexOf(keywordWithNoSpaces) > -1 || urlObj.content.toLowerCase().indexOf(keywordWithDashes) > -1) {
 						urlObj.info.keywordInURL = true;
 					}
+					var removedHttpFromURL = options.url.replace(/^https?:\/\//, '');
+					removedHttpFromURL = removedHttpFromURL.replace(/^http?:\/\//, '');
+					if (removedHttpFromURL.substr(-1) === '/') {
+						removedHttpFromURL =  removedHttpFromURL.substr(0, removedHttpFromURL.length - 1);
+					}
+					urlObj.info.timesRemovedFromTLD = removedHttpFromURL.split('/').length - 1;
 					ogObject.url = urlObj;
 					extractDomain(options.url, function (domain) {
 						request('http://' + domain + '/robots.txt', function (err, response) {

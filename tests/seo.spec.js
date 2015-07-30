@@ -51,6 +51,7 @@ describe('test getInfo:', function () {
 			Expect(result.body.result.url.info.questionMarkOrEqualsInURL).to.be(false);
 			Expect(result.body.result.url.info.keywordInURL).to.be(true);
 			Expect(result.body.result.url.info.underscoreInURL).to.be(false);
+			Expect(result.body.result.url.info.timesRemovedFromTLD).to.be(0);
 			Expect(result.body.result.links.info.linkCount).to.be(192);
 			Expect(result.body.result.links.info.noFollowCount).to.be(0);
 			Expect(result.body.result.links.info.externalCount).to.be(60);
@@ -117,6 +118,7 @@ describe('test getInfo:', function () {
 			Expect(result.body.result.url.info.questionMarkOrEqualsInURL).to.be(false);
 			Expect(result.body.result.url.info.keywordInURL).to.be(false);
 			Expect(result.body.result.url.info.underscoreInURL).to.be(false);
+			Expect(result.body.result.url.info.timesRemovedFromTLD).to.be(3);
 			Expect(result.body.result.links.info.linkCount).to.be(56);
 			Expect(result.body.result.links.info.noFollowCount).to.be(0);
 			Expect(result.body.result.links.info.externalCount).to.be(30);
@@ -183,6 +185,7 @@ describe('test getInfo:', function () {
 			Expect(result.body.result.url.info.questionMarkOrEqualsInURL).to.be(false);
 			Expect(result.body.result.url.info.keywordInURL).to.be(false);
 			Expect(result.body.result.url.info.underscoreInURL).to.be(true);
+			Expect(result.body.result.url.info.timesRemovedFromTLD).to.be(2);
 			Expect(result.body.result.links.info.linkCount).to.be(549);
 			Expect(result.body.result.links.info.noFollowCount).to.be(70);
 			Expect(result.body.result.links.info.externalCount).to.be(73);
@@ -252,6 +255,7 @@ describe('test getInfo:', function () {
 			Expect(result.body.result.url.info.questionMarkOrEqualsInURL).to.be(false);
 			Expect(result.body.result.url.info.keywordInURL).to.be(true);
 			Expect(result.body.result.url.info.underscoreInURL).to.be(false);
+			Expect(result.body.result.url.info.timesRemovedFromTLD).to.be(2);
 			Expect(result.body.result.links.info.linkCount).to.be(11);
 			Expect(result.body.result.links.info.noFollowCount).to.be(1);
 			Expect(result.body.result.links.info.externalCount).to.be(4);
