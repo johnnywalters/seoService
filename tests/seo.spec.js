@@ -61,6 +61,7 @@ describe('test getInfo:', function () {
 			Expect(result.body.result.miscellaneous.info.textLength).to.be(16143);
 			Expect(result.body.result.miscellaneous.info.htmlLength).to.be(42906);
 			Expect(result.body.result.miscellaneous.info.textToHTMLRatio).to.be(38);
+			Expect(result.body.result.miscellaneous.info.keywordInTextCount).to.be(63);
 			Expect(result.body.result.robots.status).to.be(1);
 			done();
 		});
@@ -126,6 +127,7 @@ describe('test getInfo:', function () {
 			Expect(result.body.result.miscellaneous.info.textLength).to.be(10872);
 			Expect(result.body.result.miscellaneous.info.htmlLength).to.be(39935);
 			Expect(result.body.result.miscellaneous.info.textToHTMLRatio).to.be(27);
+			Expect(result.body.result.miscellaneous.info.keywordInTextCount).to.be(0);
 			Expect(result.body.result.robots.status).to.be(1);
 			done();
 		});
@@ -191,6 +193,7 @@ describe('test getInfo:', function () {
 			Expect(result.body.result.miscellaneous.info.textLength).to.be(35174);
 			Expect(result.body.result.miscellaneous.info.htmlLength).to.be(151028);
 			Expect(result.body.result.miscellaneous.info.textToHTMLRatio).to.be(23);
+			Expect(result.body.result.miscellaneous.info.keywordInTextCount).to.be(32);
 			Expect(result.body.result.robots.status).to.be(1);
 			done();
 		});
@@ -259,6 +262,7 @@ describe('test getInfo:', function () {
 			Expect(result.body.result.miscellaneous.info.textLength).to.be(11490);
 			Expect(result.body.result.miscellaneous.info.htmlLength).to.be(12620);
 			Expect(result.body.result.miscellaneous.info.textToHTMLRatio).to.be(91);
+			Expect(result.body.result.miscellaneous.info.keywordInTextCount).to.be(3);
 			Expect(result.body.result.robots.status).to.be(1);
 			done();
 		});

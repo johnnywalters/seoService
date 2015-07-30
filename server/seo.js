@@ -319,7 +319,7 @@ module.exports = {
 	|
 	|	Purpose: checking the miscellaneous items
 	|
-	|	Parameters: link, meta, body
+	|	Parameters: link, meta, body, keyword
 	|
 	|	Returns: miscellaneousObj
 	|
@@ -327,7 +327,7 @@ module.exports = {
 	|
 	|	Tests: Unknown
 	*---------------------------------------------------------------------*/
-	checkMiscellaneous: function (link, meta, body, callback) {
+	checkMiscellaneous: function (link, meta, body, keyword, callback) {
 		var miscellaneousObj = {},
 			linkKeys = Object.keys(link),
 			metaKeys = Object.keys(meta);
@@ -351,6 +351,7 @@ module.exports = {
 		miscellaneousObj.info.textLength = body.text().length;
 		miscellaneousObj.info.htmlLength = body.html().length;
 		miscellaneousObj.info.textToHTMLRatio = (miscellaneousObj.info.textLength / miscellaneousObj.info.htmlLength).toFixed(2) * 100;
+		miscellaneousObj.info.keywordInTextCount = body.text().toLowerCase().split(keyword).length - 1;
 		callback(miscellaneousObj);
 	}
 };
